@@ -1,4 +1,7 @@
-.modal__activity-type {
+@import url(./_name/form__item_name_activity-type.css);
+@import url(./_name/form__item_name_name.css);
+
+.form__item {
     width: 100%;
     background-color: transparent;
     margin-bottom: 48px;

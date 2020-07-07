@@ -75,12 +75,14 @@
     <footer class="footer">
         <p class="footer__copyright">&COPY; 2020 Mesto Russia</p>
     </footer>
-    <div class="modal modal_opened">
+    <div class="modal">
         <div class="modal__container">
             <p class="modal__title">Редактировать профиль</p>
-            <input type="text" name="modal__name" class="modal__name">
-            <input type="text" name="modal__activity-type" class="modal__activity-type">
-            <button class="modal__save-button">Сохранить</button>
+            <form action="#" class="form">
+                <input type="text" name="name" class="form__item form__item_name_name">
+                <input type="text" name="activity-type" class="form__item form__item_name_activity-type">
+                <button type="submit" class="form__save-button">Сохранить</button>
+            </form>
             <button class="modal__close-button"></button>
         </div>
     </div>
