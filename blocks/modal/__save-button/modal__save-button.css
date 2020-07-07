@@ -1,0 +1,14 @@
+.modal__save-button {
+    width: 358px;
+    height: 50px;
+    background: #000000;
+    border-radius: 2px;
+    color: #fff;
+    border: none;
+    padding: 0;
+}
+
+.modal__save-button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
