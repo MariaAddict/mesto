@@ -16,7 +16,7 @@
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 480px) {
     .footer {
         max-width: calc(100% + 27px);
         padding-left: 27px;
