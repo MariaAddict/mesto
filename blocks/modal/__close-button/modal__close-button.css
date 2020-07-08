@@ -20,3 +20,13 @@
     opacity: 0.6;
     cursor: pointer;
 }
+
+@media screen and (max-width: 540px) {
+    .modal__close-button {
+        top: -30px;
+        right: -30px;
+        width: 36px;
+        height: 36px;
+        background-size: 36px 36px;
+    }
+}

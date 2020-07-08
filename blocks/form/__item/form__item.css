@@ -4,7 +4,17 @@
 .form__item {
     width: 100%;
     background-color: transparent;
-    margin-bottom: 48px;
+    margin-bottom: 30px;
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.form__item:last-of-type {
+    margin-bottom: 48px;
+}
+
+@media screen and (max-width: 540px) {
+    .form__item:last-of-type {
+        margin-bottom: 35px;
+    }
 }

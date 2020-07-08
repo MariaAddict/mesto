@@ -6,3 +6,9 @@
     margin-bottom: 54px;
     padding: 0;
 }
+
+@media screen and (max-width: 540px) {
+    .modal__title {
+        margin-bottom: 40px;
+    }
+}

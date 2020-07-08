@@ -10,3 +10,9 @@
     color: #000;
     position: relative;
 }
+
+@media screen and (max-width: 540px) {
+    .modal__container {
+        margin: 0 40px;
+    }
+}
