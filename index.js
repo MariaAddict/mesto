@@ -7,20 +7,21 @@ let editName = document.querySelector('.modal__item_name_name');
 let editActivity = document.querySelector('.modal__item_name_activity-type');
 let form = modal.querySelector('.modal__form');
 
-editName.value = nameProfile.textContent;
-editActivity.value = activityProfile.textContent;
-
 function toggleButton () {
     modal.classList.toggle('modal_opened');
+    if (modal.classList.contains('modal_opened') === true) {
+    editName.value = nameProfile.textContent;
+    editActivity.value = activityProfile.textContent;
+}
+}
+
+function editInput () {
+    event.preventDefault();
+    nameProfile.textContent = editName.value;
+    activityProfile.textContent = editActivity.value;
+    toggleButton ();
 }
 
 openModalButton.addEventListener('click', toggleButton);
 closeModalButton.addEventListener('click', toggleButton);
-
-function editInput () {
-    nameProfile.textContent = editName.value;
-    activityProfile.textContent = editActivity.value;
-    event.preventDefault();
-}
-
 form.addEventListener('submit', editInput);
