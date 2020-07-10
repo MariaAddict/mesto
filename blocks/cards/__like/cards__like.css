@@ -7,4 +7,10 @@
     background-repeat: no-repeat;
     padding: 0;
     margin-left: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+.cards__like:hover {
+    opacity: 0.7;
 }
