@@ -1,8 +1,8 @@
 .profile__info {
     margin-left: 17px;
     display: grid;
-    grid-template-columns: minmax(min-content, max-content) 24px;
-    grid-template-rows: repeat(2, min-content/*minmax(min-content, max-content)*/);
+    grid-template-columns: fit-content(475px) 24px;
+    grid-template-rows: repeat(2, min-content);
     gap: 16px 17px;
     align-self: center;
     align-items: baseline;
