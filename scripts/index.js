@@ -96,7 +96,11 @@ openModalEditButton.addEventListener('click', () => {
   editName.value = nameProfile.textContent;
   editActivity.value = activityProfile.textContent;
  });
-openModalAddButton.addEventListener('click', () => { toggleModal(modalAdd); });
+openModalAddButton.addEventListener('click', () => { 
+  toggleModal(modalAdd); 
+  headerImage.value = '';
+  urlImage.value = '';
+});
 closeModalEditButton.addEventListener('click',  () => { toggleModal(modalEdit); });
 closeModalAddButton.addEventListener('click',  () => { toggleModal(modalAdd); });
 formEdit.addEventListener('submit', () => { editInput(modalEdit) });
@@ -107,4 +111,9 @@ initialCards.forEach((data) => {
 
 
 
-formAdd.addEventListener('submit', () => { addCard() });
+formAdd.addEventListener('submit', () => { 
+  event.preventDefault();
+  headerImage.textContent = '';
+  urlImage.textContent = '';
+  addCard(); 
+});
