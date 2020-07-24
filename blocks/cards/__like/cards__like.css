@@ -11,6 +11,10 @@
     background-color: transparent;
 }
 
+.cards__like:focus {
+    outline: none;
+}
+
 .cards__like:hover {
     cursor: pointer;
     opacity: 0.6;

@@ -118,7 +118,7 @@ closeModalImageButton.addEventListener('click',  () => {
   toggleModal(modalImage);
   figureImgModal.src = "";
   figureImgModal.alt = "";
-  captionImgModal.textContent = "";*
+  captionImgModal.textContent = "";
 });
 formEdit.addEventListener('submit', () => { editInput(modalEdit); });
 
