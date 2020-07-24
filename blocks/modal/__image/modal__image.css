@@ -1,0 +1,11 @@
+.modal__image {
+    width: auto;
+    max-width: 100vw;
+    height: auto;
+    max-height: calc(100vh - 2*90px - 25px);
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0 auto;
+    object-fit: cover;
+    object-position: center;
+}
