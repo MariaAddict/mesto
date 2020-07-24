@@ -119,7 +119,12 @@ openModalAddButton.addEventListener('click', () => {
 
 closeModalEditButton.addEventListener('click',  () => { toggleModal(modalEdit); });
 closeModalAddButton.addEventListener('click',  () => { toggleModal(modalAdd); });
-closeModalImageButton.addEventListener('click',  () => {toggleModal(modalImage);});
+closeModalImageButton.addEventListener('click',  () => {
+  toggleModal(modalImage);
+  figureImgModal.src = "";
+  figureImgModal.alt = "";
+  captionImgModal.textContent = "";
+});
 
 formEdit.addEventListener('submit', () => { editInput(modalEdit); });
 formAdd.addEventListener('submit', () => { 
