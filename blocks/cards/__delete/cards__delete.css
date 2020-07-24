@@ -14,6 +14,10 @@
     right: 15px;
 }
 
+.cards__delete:focus {
+    outline: none;
+}
+
 .cards__delete:hover {
     cursor: pointer;
     opacity: 0.6;
