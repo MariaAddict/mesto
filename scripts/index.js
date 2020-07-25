@@ -40,14 +40,14 @@ const closeModalEditButton = modalEdit.querySelector('.modal__close-button');
 const closeModalAddButton = modalAdd.querySelector('.modal__close-button');
 const closeModalImageButton = modalImage.querySelector('.modal__close-button');
 
-let nameProfile = document.querySelector('.profile__name');
-let activityProfile = document.querySelector('.profile__activity-type');
-let editName = document.querySelector('.modal__item_type_name');
-let editActivity = document.querySelector('.modal__item_type_activity-type');
-let headerImage = formAdd.querySelector('.modal__item_type_header-image');
-let urlImage = formAdd.querySelector('.modal__item_type_url-image');
-let figureImgModal =  modalImage.querySelector('.modal__image');
-let captionImgModal = modalImage.querySelector('.modal__caption');
+const nameProfile = document.querySelector('.profile__name');
+const activityProfile = document.querySelector('.profile__activity-type');
+const editModalInputName = document.querySelector('.modal__item_type_name');
+const editModalInputActivity = document.querySelector('.modal__item_type_activity-type');
+const headerImage = formAdd.querySelector('.modal__item_type_header-image');
+const urlImage = formAdd.querySelector('.modal__item_type_url-image');
+const figureImgModal =  modalImage.querySelector('.modal__image');
+const captionImgModal = modalImage.querySelector('.modal__caption');
 
 const cardsList = document.querySelector('.cards');
 const cardTemplate = document.querySelector('.card-template').content.querySelector('.cards__item');
@@ -58,8 +58,8 @@ const toggleModal = (modal) => {
 
 function editInput () {
   event.preventDefault();
-  nameProfile.textContent = editName.value;
-  activityProfile.textContent = editActivity.value;
+  nameProfile.textContent = editModalInputName.value;
+  activityProfile.textContent = editModalInputActivity.value;
   toggleModal(modalEdit);
 };
 
@@ -107,8 +107,8 @@ initialCards.forEach((data) => {
 
 openModalEditButton.addEventListener('click', () => { 
   toggleModal(modalEdit);
-  editName.value = nameProfile.textContent;
-  editActivity.value = activityProfile.textContent;
+  editModalInputName.value = nameProfile.textContent;
+  editModalInputActivity.value = activityProfile.textContent;
  });
 
 openModalAddButton.addEventListener('click', () => { 
