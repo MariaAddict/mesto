@@ -2,10 +2,10 @@
 // все настройки передаются при вызове
 
 enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
+    formSelector: '.modal__form',
+    inputSelector: '.modal__item',
+    submitButtonSelector: '.modal__save-button',
+    inactiveButtonClass: 'modal__save-button_disabled',
+    inputErrorClass: 'modal__item_type_error',
+    errorClass: 'modal__error_visible'
   });
