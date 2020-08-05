@@ -5,28 +5,36 @@ const enableValidation = ({formSelector, inputSelector, submitButtonSelector,ina
       formElement.addEventListener('submit', function (evt) {
         evt.preventDefault();
       });
-      setEventListeners(formElement, inputSelector, submitButtonSelector, inputErrorClass);
+      setEventListeners(formElement, inputSelector, submitButtonSelector, inputErrorClass, errorClass);
     });    
  }
 
-  function setEventListeners(formElement, inputSelector, submitButtonSelector, inputErrorClass) {
+  function setEventListeners(formElement, inputSelector, submitButtonSelector, inputErrorClass, errorClass) {
       const inputList = formElement.querySelectorAll(inputSelector);
       const submitButton = formElement.querySelector(submitButtonSelector);
       inputList.forEach(inputElement => {
         inputElement.addEventListener('input', () => {
-            
             if (!inputElement.validity.valid) {
-                inputElement.classList.add(inputErrorClass);
-                hideInputError(formElement, inputElement)
+                showInputError(formElement, inputElement, inputElement.validationMessage, errorClass, inputErrorClass);   
             } else {
-                inputElement.classList.remove(inputErrorClass);
+                hideInputError(formElement, inputElement, inputErrorClass);
             }
         });
       });
   }
 
-  function hideInputError(formElement, inputElement) {
-      const errorElement = formElement.querySelector(`#`);
+  function hideInputError(formElement, inputElement, inputErrorClass) {    
+      const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+      inputElement.classList.remove(inputErrorClass);
+      errorElement.textContent = "";
+      errorElement.classList.remove(errorClass);
+  }
+
+  function showInputError(formElement, inputElement, errorMessage, errorClass, inputErrorClass) {
+      const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+      inputElement.classList.add(inputErrorClass);
+      errorElement.textContent = inputElement.validationMessage;
+      errorElement.classList.add(errorClass);
   }
 
   enableValidation({

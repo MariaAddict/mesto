@@ -85,9 +85,11 @@
             <h2 class="modal__title">Редактировать профиль</h2>
             <form action="#" name="modal-form" class="modal__form" novalidate>
                 <input type="text" name="name" class="modal__item modal__item_type_name" minlength="2" maxlength="40" 
-                autocomplete="off" required>
+                id="label" autocomplete="off" required>
+                <span class="modal__error modal__error_visible" id="label-error"></span>
                 <input type="text" name="activity-type" class="modal__item modal__item_type_activity-type"
-                 minlength="2" maxlength="200" autocomplete="off" required>
+                 minlength="2" maxlength="200" id="activity" autocomplete="off" required>
+                 <span class="modal__error modal__error_visible" id="activity-error"></span>
                 <button type="submit" class="modal__save-button">Сохранить</button>
             </form>
             <button type="button" class="modal__close-button"></button>
@@ -99,9 +101,10 @@
             <form action="#" name="modal-form" class="modal__form" novalidate>
                 <input type="text" name="name" class="modal__item modal__item_type_header-image" 
                 placeholder="Название" id="name" minlength="2" maxlength="30" autocomplete="off" required>
-                <span class="" id="name-error"></span>
+                <span class="modal__error modal__error_visible" id="name-error"></span>
                 <input type="url" name="url" class="modal__item modal__item_type_url-image" placeholder="Ссылка на картинку" 
-                autocomplete="off" required>
+                id="url" autocomplete="off" required>
+                <span class="modal__error modal__error_visible" id="url-error"></span>
                 <button type="submit" class="modal__save-button modal__save-button_disabled" disabled>Создать</button>
             </form>
             <button type="button" class="modal__close-button"></button>

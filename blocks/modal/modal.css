@@ -9,6 +9,8 @@
 @import url(./__figure/modal__figure.css);
 @import url(./__image/modal__image.css);
 @import url(./__caption/modal__caption.css);
+@import url(./__error/modal__error.css);
+@import url(./__error/_visible/modal__error_visible.css);
 
 .modal {
     width: 100%;
