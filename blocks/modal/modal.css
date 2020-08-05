@@ -2,6 +2,7 @@
 @import url(./__container/_type/modal__container_type_image.css);
 @import url(./__title/modal__title.css);
 @import url(./__item/modal__item.css);
+@import url(./__item/_type/modal__item_type_error.css);
 @import url(./__save-button/modal__save-button.css);
 @import url(./__save-button/_disabled/modal__save-button_disabled.css);
 @import url(./__close-button/modal__close-button.css);
