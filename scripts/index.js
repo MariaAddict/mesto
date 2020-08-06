@@ -47,9 +47,9 @@ function closeModal() {
 }
 
 const closeOverlay = () => {
-  const container = Array.from(document.querySelectorAll('.modal'));
-  container.forEach(() => {
-    document.addEventListener('click',(evt) => {
+  const modals = Array.from(document.querySelectorAll('.modal'));
+  modals.forEach((modal) => {
+    modal.addEventListener('click',(evt) => {
       if (evt.target.classList.contains('modal_opened')) {
         toggleModal(evt.target);
       }
