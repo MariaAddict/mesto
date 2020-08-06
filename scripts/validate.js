@@ -1,4 +1,3 @@
-/* formSelector, inputSelector, submitButtonSelector,inactiveButtonClass, inputErrorClass, errorClass */
 const enableValidation = ({formSelector, inputSelector, submitButtonSelector,inactiveButtonClass, inputErrorClass, errorClass}) => {
     const formList = Array.from(document.querySelectorAll(formSelector));
     formList.forEach((formElement) => {
