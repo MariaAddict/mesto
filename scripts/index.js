@@ -110,24 +110,11 @@ openModalEditButton.addEventListener('click', () => {
   toggleModal(modalEdit);
   editModalInputName.value = nameProfile.textContent;
   editModalInputActivity.value = activityProfile.textContent;
-  /*
-  document.addEventListener('keydown', function (evt) {
-    if (evt.key === "Escape") {
-      modal.classList.remove('modal_opened');
-      console.log('2')
-    }
-  });*/
  });
 
 openModalAddButton.addEventListener('click', () => { 
   toggleModal(modalAdd); 
   formAdd.reset();
-  /*
-  document.addEventListener('keydown', function (evt) {
-    if (evt.key === "Escape") {
-      modal.classList.remove('modal_opened');
-    }
-  });*/
 });
 
 closeModalEditButton.addEventListener('click',  () => { toggleModal(modalEdit); });
