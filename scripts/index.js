@@ -102,6 +102,18 @@ function addCard() {
   toggleModal(modalAdd);
 };
 
+function clearInputError(form) {
+  const inputList = Array.from(form.querySelectorAll('.modal__item'));
+  const submitButton = form.querySelector('.modal__save-button');
+  inputList.forEach(inputElement => {
+      const errorElement = form.querySelector(`#${inputElement.id}-error`);
+      inputElement.classList.remove('modal__item_type_error');
+      errorElement.textContent = "";
+      errorElement.classList.remove('modal__error_visible');
+        toggleButtonState(inputList, submitButton, 'modal__save-button_disabled');
+  });
+}
+
 initialCards.forEach((data) => {
   renderCard(data);
 });
@@ -110,11 +122,13 @@ openModalEditButton.addEventListener('click', () => {
   toggleModal(modalEdit);
   editModalInputName.value = nameProfile.textContent;
   editModalInputActivity.value = activityProfile.textContent;
+  clearInputError(formEdit);
  });
 
 openModalAddButton.addEventListener('click', () => { 
   toggleModal(modalAdd); 
   formAdd.reset();
+  clearInputError(formAdd);
 });
 
 closeModalEditButton.addEventListener('click',  () => { toggleModal(modalEdit); });

@@ -16,14 +16,18 @@ const enableValidation = ({formSelector, inputSelector, submitButtonSelector,ina
       inputList.forEach(inputElement => {
         inputElement.addEventListener('input', function () {
             hasInvalidInput(inputList);
-            if (!inputElement.validity.valid) {
-                showInputError(formElement, inputElement, inputElement.validationMessage, errorClass, inputErrorClass);   
-            } else {
-                hideInputError(formElement, inputElement, inputErrorClass, errorClass);
-            }
+            checkInvavidInput (formElement, inputElement, errorClass, inputErrorClass);
             toggleButtonState(inputList, submitButton, inactiveButtonClass);
         });
       });
+  }
+
+  function checkInvavidInput (formElement, inputElement, errorClass, inputErrorClass) {
+    if (!inputElement.validity.valid) {
+        showInputError(formElement, inputElement, inputElement.validationMessage, errorClass, inputErrorClass);   
+    } else {
+        hideInputError(formElement, inputElement, inputErrorClass, errorClass);
+    }
   }
 
   function hideInputError(formElement, inputElement, inputErrorClass, errorClass) {    
