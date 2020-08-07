@@ -1,4 +1,3 @@
-const modal = document.querySelector('.modal');
 const modalEdit = document.querySelector('.modal_type_edit');
 const modalAdd = document.querySelector('.modal_type_add');
 const modalImage = document.querySelector('.modal_type_figure');
@@ -35,7 +34,7 @@ const closeModalEsc = () => {
         closeModal();
     }
   });
-}
+};
 
 function closeModal() {
   const modals = Array.from(document.querySelectorAll('.modal'));
@@ -55,14 +54,14 @@ const closeOverlay = () => {
       }
     });
   });
-}
+};
 
-function editInput () {
+function editInputs (event) {
   event.preventDefault();
   nameProfile.textContent = editModalInputName.value;
   activityProfile.textContent = editModalInputActivity.value;
   toggleModal(modalEdit);
-};
+}
 
 function createCard(card) {
   const cardItem = cardTemplate.cloneNode(true);
@@ -90,28 +89,16 @@ function createCard(card) {
   })
 
   return cardItem;
-};
+}
 
 function renderCard(card) {
   cardsList.prepend(createCard(card));
-};
+}
 
 function addCard() {
   event.preventDefault();
   renderCard({name: headerImage.value, link: urlImage.value});
   toggleModal(modalAdd);
-};
-
-function clearInputError(form) {
-  const inputList = Array.from(form.querySelectorAll('.modal__item'));
-  const submitButton = form.querySelector('.modal__save-button');
-  inputList.forEach(inputElement => {
-      const errorElement = form.querySelector(`#${inputElement.id}-error`);
-      inputElement.classList.remove('modal__item_type_error');
-      errorElement.textContent = "";
-      errorElement.classList.remove('modal__error_visible');
-        toggleButtonState(inputList, submitButton, 'modal__save-button_disabled');
-  });
 }
 
 initialCards.forEach((data) => {
@@ -141,7 +128,7 @@ closeModalImageButton.addEventListener('click',  () => {
 });
 
 formEdit.addEventListener('submit', () => { editInput(modalEdit); });
-formAdd.addEventListener('submit', () => { 
+formAdd.addEventListener('submit', (event) => { 
   event.preventDefault();
   headerImage.textContent = '';
   urlImage.textContent = '';
