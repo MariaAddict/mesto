@@ -58,7 +58,7 @@ function closeModalEsc(evt) {
   }
 }
 
-function editInput(event) {
+function saveProfileChanges(event) {
   event.preventDefault();
   nameProfile.textContent = editModalInputName.value;
   activityProfile.textContent = editModalInputActivity.value;
@@ -129,7 +129,7 @@ closeModalImageButton.addEventListener('click',  () => {
   captionImgModal.textContent = "";
 });
 
-formEdit.addEventListener('submit', (evt) => { editInput(evt); });
+formEdit.addEventListener('submit', (evt) => { saveProfileChanges(evt); });
 formAdd.addEventListener('submit', (event) => { 
   event.preventDefault();
   headerImage.textContent = '';
