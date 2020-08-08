@@ -52,7 +52,7 @@ function closeModalEsc(evt) {
   if (evt.key === "Escape") {
     modals.forEach((modal) => {
       if (modal.classList.contains('modal_opened')) {
-        modal.classList.remove('modal_opened');
+        closeModal(modal);
       }
     });
   }
