@@ -83,7 +83,7 @@ function createCard(card) {
     event.target.classList.toggle('card__like_pressed');
   });
 
-  cardImage.addEventListener('click', (event) => {
+  cardImage.addEventListener('click', () => {
     figureImgModal.src = card.link;
     figureImgModal.alt = card.name;
     captionImgModal.textContent = card.name;

@@ -82,7 +82,7 @@ function showInputError(
 ) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
-  errorElement.textContent = inputElement.validationMessage;
+  errorElement.textContent = errorMessage;
   errorElement.classList.add(errorClass);
 }
 
