@@ -29,7 +29,7 @@ const closeOverlay = () => {
   modals.forEach((modal) => {
     modal.addEventListener('click',(evt) => {
       if (evt.target.classList.contains('modal_opened')) {
-        evt.target.classList.remove('modal_opened');
+        closeModal(evt.target);
       }
     });
   });
@@ -37,7 +37,7 @@ const closeOverlay = () => {
 
 closeOverlay();
 
-function openModal(modal, form) {
+function openModal(modal) {
   modal.classList.add('modal_opened');
   document.addEventListener('keydown', closeModalEsc);
 }
