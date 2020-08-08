@@ -94,15 +94,24 @@ function hasInvalidInput(inputList) {
 
 function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(inactiveButtonClass);
-    buttonElement.disabled = true;
+    disabledButton(buttonElement, inactiveButtonClass);
   } else {
-    buttonElement.classList.remove(inactiveButtonClass);
-    buttonElement.disabled = false;
+    enabledButton(buttonElement, inactiveButtonClass);
   }
 }
 
-function clearInputError(form) {
+function enabledButton(buttonElement, inactiveButtonClass) {
+  buttonElement.classList.remove(inactiveButtonClass);
+  buttonElement.disabled = false;
+}
+
+function disabledButton(buttonElement, inactiveButtonClass) {
+  buttonElement.classList.add(inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
+//отчистка ошибок и проверка кнопки при открытиии попапа
+function clearInputErrorCheckButton(form) {
   const inputList = Array.from(form.querySelectorAll(".modal__item"));
   const submitButton = form.querySelector(".modal__save-button");
   inputList.forEach((inputElement) => {
@@ -110,6 +119,7 @@ function clearInputError(form) {
     inputElement.classList.remove("modal__item_type_error");
     errorElement.textContent = "";
     errorElement.classList.remove("modal__error_visible");
+    //проверка кнопки при открытиии попапа
     toggleButtonState(inputList, submitButton, "modal__save-button_disabled");
   });
 }

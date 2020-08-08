@@ -109,15 +109,15 @@ initialCards.forEach((data) => {
 
 openModalEditButton.addEventListener('click', () => {
   openModal(modalEdit);
-  clearInputError(formEdit);
   editModalInputName.value = nameProfile.textContent;
   editModalInputActivity.value = activityProfile.textContent;
+  clearInputErrorCheckButton(formEdit);
 });
 
 openModalAddButton.addEventListener('click', () => {
   openModal(modalAdd);
-  clearInputError(formAdd);
   formAdd.reset();
+  clearInputErrorCheckButton(formAdd);
 });
 
 closeModalEditButton.addEventListener('click', () => { closeModal(modalEdit); });
