@@ -22,7 +22,6 @@ const figureImgModal = modalImage.querySelector('.modal__image');
 const captionImgModal = modalImage.querySelector('.modal__caption');
 
 const cardsList = document.querySelector('.cards');
-const cardTemplate = document.querySelector('.card-template').content.querySelector('.cards__item');
 
 const closeOverlay = () => {
   const modals = Array.from(document.querySelectorAll('.modal'));
@@ -65,48 +64,6 @@ function saveProfileChanges(event) {
   closeModal(modalEdit);
 }
 
-function createCard(card) {
-  const cardItem = cardTemplate.cloneNode(true);
-  const cardImage = cardItem.querySelector('.cards__image');
-  const cardTitle = cardItem.querySelector('.cards__title');
-  const cardLikeButton = cardItem.querySelector('.cards__like');
-  const cardDeleteButton = cardItem.querySelector('.cards__delete');
-  cardTitle.textContent = card.name;
-  cardImage.src = card.link;
-  cardImage.alt = card.name;
-
-  cardDeleteButton.addEventListener('click', (event) => {
-    event.target.closest('.cards__item').remove();
-  });
-
-  cardLikeButton.addEventListener('click', (event) => {
-    event.target.classList.toggle('card__like_pressed');
-  });
-
-  cardImage.addEventListener('click', () => {
-    figureImgModal.src = card.link;
-    figureImgModal.alt = card.name;
-    captionImgModal.textContent = card.name;
-    openModal(modalImage);
-  });
-
-  return cardItem;
-}
-
-function renderCard(card) {
-  cardsList.prepend(createCard(card));
-}
-
-function addCard() {
-  event.preventDefault();
-  renderCard({ name: headerImage.value, link: urlImage.value });
-  closeModal(modalAdd);
-}
-
-initialCards.forEach((data) => {
-  renderCard(data);
-});
-
 openModalEditButton.addEventListener('click', () => {
   openModal(modalEdit);
   editModalInputName.value = nameProfile.textContent;
@@ -134,5 +91,5 @@ formAdd.addEventListener('submit', (event) => {
   event.preventDefault();
   headerImage.textContent = '';
   urlImage.textContent = '';
-  addCard();
+  addCard({ name: headerImage.value, link: urlImage.value });
 });
