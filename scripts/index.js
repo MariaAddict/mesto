@@ -68,13 +68,13 @@ openModalEditButton.addEventListener('click', () => {
   openModal(modalEdit);
   editModalInputName.value = nameProfile.textContent;
   editModalInputActivity.value = activityProfile.textContent;
-  clearInputErrorCheckButton(formEdit);
+  formValid.clearInputErrorCheckButton(formEdit);
 });
 
 openModalAddButton.addEventListener('click', () => {
   openModal(modalAdd);
   formAdd.reset();
-  clearInputErrorCheckButton(formAdd);
+  formValid.clearInputErrorCheckButton(formAdd);
 });
 
 closeModalEditButton.addEventListener('click', () => { closeModal(modalEdit); });
