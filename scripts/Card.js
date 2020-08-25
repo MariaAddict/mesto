@@ -10,13 +10,15 @@ class Card {
         return cardItem;
     }
 
+    _remove = () => {
+        this._card.remove();
+    }
+
     _setEventListeners() {
         this._card.querySelector('.cards__like').addEventListener('click', (event) => {
           event.target.classList.toggle('card__like_pressed');
         });
-        this._card.querySelector('.cards__delete').addEventListener('click', (event) => {
-            event.target.closest('.cards__item').remove();
-        });
+        this._card.querySelector('.cards__delete').addEventListener('click', this._remove);
         this._card.querySelector('.cards__image').addEventListener('click', () => {
             figureImgModal.src = this._image;
             figureImgModal.alt = this._title;
