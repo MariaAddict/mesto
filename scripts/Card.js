@@ -11,23 +11,23 @@ function openModal(modal) {
 function closeModalEsc(evt) {
     const modals = Array.from(document.querySelectorAll('.modal'));
     if (evt.key === "Escape") {
-      modals.forEach((modal) => {
-        if (modal.classList.contains('modal_opened')) {
-          closeModal(modal);
-        }
-      });
+        modals.forEach((modal) => {
+            if (modal.classList.contains('modal_opened')) {
+                closeModal(modal);
+            }
+        });
     }
-  }
+}
 
 function closeModal(modal) {
     modal.classList.remove('modal_opened');
     document.removeEventListener('keydown', closeModalEsc);
-  }
+}
 //
-  
+
 
 export default class Card {
-    constructor(data, handleCardClick){
+    constructor(data, handleCardClick) {
         this._image = data.link;
         this._title = data.name;
     }
@@ -44,7 +44,7 @@ export default class Card {
 
     _setEventListeners() {
         this._card.querySelector('.cards__like').addEventListener('click', (event) => {
-          event.target.classList.toggle('card__like_pressed');
+            event.target.classList.toggle('card__like_pressed');
         });
         this._card.querySelector('.cards__delete').addEventListener('click', this._remove);
         this._card.querySelector('.cards__image').addEventListener('click', () => {
@@ -52,7 +52,7 @@ export default class Card {
             figureImgModal.alt = this._title;
             captionImgModal.textContent = this._title;
             openModal(modalImage);
-          });
+        });
     }
 
     generateCard() {
@@ -62,7 +62,7 @@ export default class Card {
         this._card.querySelector('.cards__image').src = this._image;
         this._card.querySelector('.cards__image').alt = this._title;
         this._card.querySelector('.cards__title').textContent = this._title;
-    
+
         return this._card;
     }
 }

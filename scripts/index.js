@@ -50,9 +50,9 @@ const selectors = {
   inactiveButtonClass: "modal__save-button_disabled",
   inputErrorClass: "modal__item_type_error",
   errorClass: "modal__error_visible",
-};      
+};
 
-const formValid = new  FormValidator(selectors);
+const formValid = new FormValidator(selectors);
 formValid.enableValidation();
 //
 
