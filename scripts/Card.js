@@ -1,5 +1,5 @@
-class Card {
-    constructor(data){
+export default class Card {
+    constructor(data, handleCardClick){
         this._image = data.link;
         this._title = data.name;
     }
@@ -38,19 +38,3 @@ class Card {
         return this._card;
     }
 }
-
-function createCard(data) {
-    const item = new Card(data);
-    return item.generateCard(data);
-}
-
-initialCards.forEach((data) => {
-    cardsList.append(createCard(data));
-});
-
-
-function addCard(data) {
-    cardsList.prepend(createCard(data));
-    closeModal(modalAdd);
-}
-  

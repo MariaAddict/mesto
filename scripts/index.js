@@ -23,6 +23,40 @@ const captionImgModal = modalImage.querySelector('.modal__caption');
 
 const cardsList = document.querySelector('.cards');
 
+import initialCards from "./initial-сards.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
+// добавление карточек
+function createCard(data) {
+  const item = new Card(data);
+  return item.generateCard(data);
+}
+
+initialCards.forEach((data) => {
+  cardsList.append(createCard(data));
+});
+
+function addCard(data) {
+  cardsList.prepend(createCard(data));
+}
+//
+
+//валидация и объект классов 
+const selectors = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__item",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button_disabled",
+  inputErrorClass: "modal__item_type_error",
+  errorClass: "modal__error_visible",
+};      
+
+const formValid = new  FormValidator(selectors);
+formValid.enableValidation();
+//
+
+
 const closeOverlay = () => {
   const modals = Array.from(document.querySelectorAll('.modal'));
   modals.forEach((modal) => {
@@ -92,4 +126,5 @@ formAdd.addEventListener('submit', (event) => {
   headerImage.textContent = '';
   urlImage.textContent = '';
   addCard({ name: headerImage.value, link: urlImage.value });
+  closeModal(modalAdd);
 });

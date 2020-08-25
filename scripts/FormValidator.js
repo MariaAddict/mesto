@@ -1,4 +1,4 @@
-class FormValidator {
+export default class FormValidator {
     constructor(data, form) {
         this._formSelector = data.formSelector;
         this._inputSelector = data.inputSelector;
@@ -106,15 +106,3 @@ class FormValidator {
         });
       }
 }
-
-const selectors = {
-    formSelector: ".modal__form",
-    inputSelector: ".modal__item",
-    submitButtonSelector: ".modal__save-button",
-    inactiveButtonClass: "modal__save-button_disabled",
-    inputErrorClass: "modal__item_type_error",
-    errorClass: "modal__error_visible",
-  };      
-  
-const formValid = new  FormValidator(selectors);
-formValid.enableValidation();
