@@ -100,6 +100,7 @@ closeModalEditButton.addEventListener('click', () => {
 closeModalAddButton.addEventListener('click', () => {
   closeModal(modalAddCard);
   clearErrorByCloseModal(formAddCard);
+  formAddCard.reset();
 });
 closeModalImageButton.addEventListener('click', () => {
   closeModal(modalImage);
