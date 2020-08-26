@@ -10,7 +10,7 @@ export default class FormValidator {
     }
 
     enableValidation(formElement) {
-            this._setEventListeners(formElement);
+        this._setEventListeners(formElement);
     }
 
     _setEventListeners(formElement) {
