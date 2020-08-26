@@ -28,10 +28,10 @@ export default class Card {
         });
         this._card.querySelector('.cards__delete').addEventListener('click', this._removeCard);
         this._cardImage.addEventListener('click', () => {
+            openModal(modalImage);
             figureImgModal.src = this._image;
             figureImgModal.alt = this._title;
             captionImgModal.textContent = this._title;
-            openModal(modalImage);
         });
     }
 
