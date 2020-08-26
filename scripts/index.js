@@ -24,7 +24,7 @@ const captionImgModal = modalImage.querySelector('.modal__caption');
 const cardsList = document.querySelector('.cards');
 
 import initialCards from './initial-сards.js';
-import {closeByOverlay, openModal, closeModal, closeModalEsc} from './utils.js';
+import { closeByOverlay, openModal, closeModal, closeModalEsc } from './utils.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
@@ -54,11 +54,26 @@ const validationConfig = {
   errorClass: 'modal__error_visible',
 };
 
-const formValid = new FormValidator(validationConfig);
-formValid.enableValidation();
+const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
+formList.forEach((formElement) => {
+  formElement.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+  });
+  const formValid = new FormValidator(validationConfig, formElement);
+  formValid.enableValidation(formElement);
+});
+
+//отчистка ошибок и проверка кнопки при открытиии попапа
+const clearErrorByCloseModal = (form) => {
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+    });
+    const formValid = new FormValidator(validationConfig, formElement);
+    formValid.clearInputErrorCheckButton(form);
+  });
+}
 //
-
-
 
 function saveProfileChanges(event) {
   event.preventDefault();
@@ -77,15 +92,14 @@ openModalAddButton.addEventListener('click', () => {
   openModal(modalAddCard);
 });
 
-closeModalEditButton.addEventListener('click', () => { 
+closeModalEditButton.addEventListener('click', () => {
   closeModal(modalEditProfile);
-  formValid.clearInputErrorCheckButton(formEditProfile);
+  clearErrorByCloseModal(formEditProfile);
 });
 
-closeModalAddButton.addEventListener('click', () => { 
+closeModalAddButton.addEventListener('click', () => {
   closeModal(modalAddCard);
-  formAddCard.reset();
-  formValid.clearInputErrorCheckButton(formAddCard);
+  clearErrorByCloseModal(formAddCard);
 });
 closeModalImageButton.addEventListener('click', () => {
   closeModal(modalImage);

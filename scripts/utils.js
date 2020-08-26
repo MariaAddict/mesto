@@ -2,7 +2,7 @@ const closeByOverlay = (evt) => {
     if (evt.target.classList.contains('modal_opened')) {
       closeModal(evt.target);
     }
-  }
+}
   
   function openModal(modal) {
     modal.classList.add('modal_opened');

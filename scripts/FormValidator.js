@@ -1,21 +1,16 @@
 export default class FormValidator {
-    constructor(data, form) {
+    constructor(data, formElement) {
         this._formSelector = data.formSelector;
         this._inputSelector = data.inputSelector;
         this._submitButtonSelector = data.submitButtonSelector;
         this._inactiveButtonClass = data.inactiveButtonClass;
         this._inputErrorClass = data.inputErrorClass;
         this._errorClass = data.errorClass;
+        this._formElement = formElement;
     }
 
-    enableValidation() {
-        const formList = Array.from(document.querySelectorAll(this._formSelector));
-        formList.forEach((formElement) => {
-            formElement.addEventListener('submit', function (evt) {
-                evt.preventDefault();
-            });
+    enableValidation(formElement) {
             this._setEventListeners(formElement);
-        });
     }
 
     _setEventListeners(formElement) {
@@ -94,13 +89,13 @@ export default class FormValidator {
 
     //отчистка ошибок и проверка кнопки при открытиии попапа
     clearInputErrorCheckButton(form) {
-        const inputList = Array.from(form.querySelectorAll('.modal__item'));
+        const inputList = Array.from(form.querySelectorAll(this._inputSelector));
         const submitButton = form.querySelector('.modal__save-button');
         inputList.forEach((inputElement) => {
             const errorElement = form.querySelector(`#${inputElement.id}-error`);
-            inputElement.classList.remove('modal__item_type_error');
+            inputElement.classList.remove(this._inputErrorClass);
             errorElement.textContent = '';
-            errorElement.classList.remove('modal__error_visible');
+            errorElement.classList.remove(this._errorClass);
             //проверка кнопки при открытиии попапа
             this._toggleButtonState(inputList, submitButton);
         });
