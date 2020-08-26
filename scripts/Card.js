@@ -38,7 +38,7 @@ export default class Card {
         return cardItem;
     }
 
-    _remove = () => {
+    _removeCard = () => {
         this._card.remove();
     }
 
@@ -46,7 +46,7 @@ export default class Card {
         this._card.querySelector('.cards__like').addEventListener('click', (event) => {
             event.target.classList.toggle('card__like_pressed');
         });
-        this._card.querySelector('.cards__delete').addEventListener('click', this._remove);
+        this._card.querySelector('.cards__delete').addEventListener('click', this._removeCard);
         this._card.querySelector('.cards__image').addEventListener('click', () => {
             figureImgModal.src = this._image;
             figureImgModal.alt = this._title;

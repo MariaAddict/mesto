@@ -1,23 +1,23 @@
-const modalEdit = document.querySelector('.modal_type_edit');
-const modalAdd = document.querySelector('.modal_type_add');
+const modalEditProfile = document.querySelector('.modal_type_edit');
+const modalAddCard = document.querySelector('.modal_type_add');
 const modalImage = document.querySelector('.modal_type_figure');
 
-const formEdit = modalEdit.querySelector('.modal__form');
-const formAdd = modalAdd.querySelector('.modal__form');
+const formEditProfile = modalEditProfile.querySelector('.modal__form');
+const formAddCard = modalAddCard.querySelector('.modal__form');
 
 const openModalEditButton = document.querySelector('.profile__info-button');
 const openModalAddButton = document.querySelector('.profile__add-button');
 
-const closeModalEditButton = modalEdit.querySelector('.modal__close-button');
-const closeModalAddButton = modalAdd.querySelector('.modal__close-button');
+const closeModalEditButton = modalEditProfile.querySelector('.modal__close-button');
+const closeModalAddButton = modalAddCard.querySelector('.modal__close-button');
 const closeModalImageButton = modalImage.querySelector('.modal__close-button');
 
 const nameProfile = document.querySelector('.profile__name');
 const activityProfile = document.querySelector('.profile__activity-type');
 const editModalInputName = document.querySelector('.modal__item_type_name');
 const editModalInputActivity = document.querySelector('.modal__item_type_activity-type');
-const headerImage = formAdd.querySelector('.modal__item_type_header-image');
-const urlImage = formAdd.querySelector('.modal__item_type_url-image');
+const headerImage = formAddCard.querySelector('.modal__item_type_header-image');
+const urlImage = formAddCard.querySelector('.modal__item_type_url-image');
 const figureImgModal = modalImage.querySelector('.modal__image');
 const captionImgModal = modalImage.querySelector('.modal__caption');
 
@@ -43,7 +43,7 @@ function addCard(data) {
 //
 
 //валидация и объект классов 
-const selectors = {
+const validationConfig = {
   formSelector: '.modal__form',
   inputSelector: '.modal__item',
   submitButtonSelector: '.modal__save-button',
@@ -52,12 +52,12 @@ const selectors = {
   errorClass: 'modal__error_visible',
 };
 
-const formValid = new FormValidator(selectors);
+const formValid = new FormValidator(validationConfig);
 formValid.enableValidation();
 //
 
 
-const closeOverlay = () => {
+const closeByOverlay = () => {
   const modals = Array.from(document.querySelectorAll('.modal'));
   modals.forEach((modal) => {
     modal.addEventListener('click', (evt) => {
@@ -68,7 +68,7 @@ const closeOverlay = () => {
   });
 };
 
-closeOverlay();
+closeByOverlay();
 
 function openModal(modal) {
   modal.classList.add('modal_opened');
@@ -95,24 +95,24 @@ function saveProfileChanges(event) {
   event.preventDefault();
   nameProfile.textContent = editModalInputName.value;
   activityProfile.textContent = editModalInputActivity.value;
-  closeModal(modalEdit);
+  closeModal(modalEditProfile);
 }
 
 openModalEditButton.addEventListener('click', () => {
-  openModal(modalEdit);
+  openModal(modalEditProfile);
   editModalInputName.value = nameProfile.textContent;
   editModalInputActivity.value = activityProfile.textContent;
-  formValid.clearInputErrorCheckButton(formEdit);
+  formValid.clearInputErrorCheckButton(formEditProfile);
 });
 
 openModalAddButton.addEventListener('click', () => {
-  openModal(modalAdd);
-  formAdd.reset();
-  formValid.clearInputErrorCheckButton(formAdd);
+  openModal(modalAddCard);
+  formAddCard.reset();
+  formValid.clearInputErrorCheckButton(formAddCard);
 });
 
-closeModalEditButton.addEventListener('click', () => { closeModal(modalEdit); });
-closeModalAddButton.addEventListener('click', () => { closeModal(modalAdd); });
+closeModalEditButton.addEventListener('click', () => { closeModal(modalEditProfile); });
+closeModalAddButton.addEventListener('click', () => { closeModal(modalAddCard); });
 closeModalImageButton.addEventListener('click', () => {
   closeModal(modalImage);
   figureImgModal.src = '';
@@ -120,11 +120,11 @@ closeModalImageButton.addEventListener('click', () => {
   captionImgModal.textContent = '';
 });
 
-formEdit.addEventListener('submit', (evt) => { saveProfileChanges(evt); });
-formAdd.addEventListener('submit', (event) => {
+formEditProfile.addEventListener('submit', (evt) => { saveProfileChanges(evt); });
+formAddCard.addEventListener('submit', (event) => {
   event.preventDefault();
   headerImage.textContent = '';
   urlImage.textContent = '';
   addCard({ name: headerImage.value, link: urlImage.value });
-  closeModal(modalAdd);
+  closeModal(modalAddCard);
 });
