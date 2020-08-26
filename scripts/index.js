@@ -29,8 +29,9 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
 // добавление карточек
+
 function createCard(data) {
-  const item = new Card(data);
+  const item = new Card(data, '.card-template');
   return item.generateCard(data);
 }
 

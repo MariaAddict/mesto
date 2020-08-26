@@ -6,13 +6,14 @@ const captionImgModal = modalImage.querySelector('.modal__caption');
 import {closeByOverlay, openModal, closeModal, closeModalEsc} from './utils.js';
 
 export default class Card {
-    constructor(data, handleCardClick) {
+    constructor(data, selectorClass) {
         this._image = data.link;
         this._title = data.name;
+        this._selectorClass = selectorClass;
     }
 
     _getTemplate() {
-        const cardTemplate = document.querySelector('.card-template').content.querySelector('.cards__item');
+        const cardTemplate = document.querySelector(this._selectorClass).content.querySelector('.cards__item'); '.card-template'
         const cardItem = cardTemplate.cloneNode(true);
         return cardItem;
     }
@@ -26,7 +27,7 @@ export default class Card {
             event.target.classList.toggle('card__like_pressed');
         });
         this._card.querySelector('.cards__delete').addEventListener('click', this._removeCard);
-        this._card.querySelector('.cards__image').addEventListener('click', () => {
+        this._cardImage.addEventListener('click', () => {
             figureImgModal.src = this._image;
             figureImgModal.alt = this._title;
             captionImgModal.textContent = this._title;
@@ -36,10 +37,11 @@ export default class Card {
 
     generateCard() {
         this._card = this._getTemplate();
+        this._cardImage = this._card.querySelector('.cards__image');
         this._setEventListeners();
 
-        this._card.querySelector('.cards__image').src = this._image;
-        this._card.querySelector('.cards__image').alt = this._title;
+        this._cardImage.src = this._image;
+        this._cardImage.alt = this._title;
         this._card.querySelector('.cards__title').textContent = this._title;
 
         return this._card;
