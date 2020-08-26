@@ -11,7 +11,7 @@ export default class FormValidator {
     enableValidation() {
         const formList = Array.from(document.querySelectorAll(this._formSelector));
         formList.forEach((formElement) => {
-            formElement.addEventListener("submit", function (evt) {
+            formElement.addEventListener('submit', function (evt) {
                 evt.preventDefault();
             });
             this._setEventListeners(formElement);
@@ -23,7 +23,7 @@ export default class FormValidator {
         const submitButton = formElement.querySelector(this._submitButtonSelector);
         this._toggleButtonState(inputList, submitButton);
         inputList.forEach((inputElement) => {
-            inputElement.addEventListener("input", () => {
+            inputElement.addEventListener('input', () => {
                 this._hasInvalidInput(inputList);
                 this._checkInvavidInput(formElement, inputElement);
                 this._toggleButtonState(inputList, submitButton);
@@ -94,15 +94,15 @@ export default class FormValidator {
 
     //отчистка ошибок и проверка кнопки при открытиии попапа
     clearInputErrorCheckButton(form) {
-        const inputList = Array.from(form.querySelectorAll(".modal__item"));
-        const submitButton = form.querySelector(".modal__save-button");
+        const inputList = Array.from(form.querySelectorAll('.modal__item'));
+        const submitButton = form.querySelector('.modal__save-button');
         inputList.forEach((inputElement) => {
             const errorElement = form.querySelector(`#${inputElement.id}-error`);
-            inputElement.classList.remove("modal__item_type_error");
-            errorElement.textContent = "";
-            errorElement.classList.remove("modal__error_visible");
+            inputElement.classList.remove('modal__item_type_error');
+            errorElement.textContent = '';
+            errorElement.classList.remove('modal__error_visible');
             //проверка кнопки при открытиии попапа
-            this._toggleButtonState(inputList, submitButton/*, "modal__save-button_disabled"*/);
+            this._toggleButtonState(inputList, submitButton);
         });
     }
 }

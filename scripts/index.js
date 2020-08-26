@@ -23,9 +23,9 @@ const captionImgModal = modalImage.querySelector('.modal__caption');
 
 const cardsList = document.querySelector('.cards');
 
-import initialCards from "./initial-сards.js";
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import initialCards from './initial-сards.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 // добавление карточек
 function createCard(data) {
@@ -44,12 +44,12 @@ function addCard(data) {
 
 //валидация и объект классов 
 const selectors = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__item",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "modal__item_type_error",
-  errorClass: "modal__error_visible",
+  formSelector: '.modal__form',
+  inputSelector: '.modal__item',
+  submitButtonSelector: '.modal__save-button',
+  inactiveButtonClass: 'modal__save-button_disabled',
+  inputErrorClass: 'modal__item_type_error',
+  errorClass: 'modal__error_visible',
 };
 
 const formValid = new FormValidator(selectors);
@@ -82,7 +82,7 @@ function closeModal(modal) {
 
 function closeModalEsc(evt) {
   const modals = Array.from(document.querySelectorAll('.modal'));
-  if (evt.key === "Escape") {
+  if (evt.key === 'Escape') {
     modals.forEach((modal) => {
       if (modal.classList.contains('modal_opened')) {
         closeModal(modal);
@@ -115,9 +115,9 @@ closeModalEditButton.addEventListener('click', () => { closeModal(modalEdit); })
 closeModalAddButton.addEventListener('click', () => { closeModal(modalAdd); });
 closeModalImageButton.addEventListener('click', () => {
   closeModal(modalImage);
-  figureImgModal.src = "";
-  figureImgModal.alt = "";
-  captionImgModal.textContent = "";
+  figureImgModal.src = '';
+  figureImgModal.alt = '';
+  captionImgModal.textContent = '';
 });
 
 formEdit.addEventListener('submit', (evt) => { saveProfileChanges(evt); });
