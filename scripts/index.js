@@ -56,28 +56,22 @@ const formValid = new FormValidator(validationConfig);
 formValid.enableValidation();
 //
 
-
-const closeByOverlay = () => {
-  const modals = Array.from(document.querySelectorAll('.modal'));
-  modals.forEach((modal) => {
-    modal.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('modal_opened')) {
-        closeModal(evt.target);
-      }
-    });
-  });
-};
-
-closeByOverlay();
+const closeByOverlay = (evt) => {
+  if (evt.target.classList.contains('modal_opened')) {
+    closeModal(evt.target);
+  }
+}
 
 function openModal(modal) {
   modal.classList.add('modal_opened');
   document.addEventListener('keydown', closeModalEsc);
+  document.addEventListener('click', closeByOverlay);
 }
 
 function closeModal(modal) {
   modal.classList.remove('modal_opened');
   document.removeEventListener('keydown', closeModalEsc);
+  document.removeEventListener('click', closeByOverlay);
 }
 
 function closeModalEsc(evt) {
