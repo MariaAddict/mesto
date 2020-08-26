@@ -70,17 +70,22 @@ openModalEditButton.addEventListener('click', () => {
   openModal(modalEditProfile);
   editModalInputName.value = nameProfile.textContent;
   editModalInputActivity.value = activityProfile.textContent;
-  formValid.clearInputErrorCheckButton(formEditProfile);
 });
 
 openModalAddButton.addEventListener('click', () => {
   openModal(modalAddCard);
+});
+
+closeModalEditButton.addEventListener('click', () => { 
+  closeModal(modalEditProfile);
+  formValid.clearInputErrorCheckButton(formEditProfile);
+});
+
+closeModalAddButton.addEventListener('click', () => { 
+  closeModal(modalAddCard);
   formAddCard.reset();
   formValid.clearInputErrorCheckButton(formAddCard);
 });
-
-closeModalEditButton.addEventListener('click', () => { closeModal(modalEditProfile); });
-closeModalAddButton.addEventListener('click', () => { closeModal(modalAddCard); });
 closeModalImageButton.addEventListener('click', () => {
   closeModal(modalImage);
   figureImgModal.src = '';
