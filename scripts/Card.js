@@ -3,28 +3,7 @@ const modalImage = document.querySelector('.modal_type_figure');
 const figureImgModal = modalImage.querySelector('.modal__image');
 const captionImgModal = modalImage.querySelector('.modal__caption');
 
-function openModal(modal) {
-    modal.classList.add('modal_opened');
-    document.addEventListener('keydown', closeModalEsc);
-}
-
-function closeModalEsc(evt) {
-    const modals = Array.from(document.querySelectorAll('.modal'));
-    if (evt.key === "Escape") {
-        modals.forEach((modal) => {
-            if (modal.classList.contains('modal_opened')) {
-                closeModal(modal);
-            }
-        });
-    }
-}
-
-function closeModal(modal) {
-    modal.classList.remove('modal_opened');
-    document.removeEventListener('keydown', closeModalEsc);
-}
-//
-
+import {closeByOverlay, openModal, closeModal, closeModalEsc} from './utils.js';
 
 export default class Card {
     constructor(data, handleCardClick) {

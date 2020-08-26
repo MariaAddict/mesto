@@ -24,6 +24,7 @@ const captionImgModal = modalImage.querySelector('.modal__caption');
 const cardsList = document.querySelector('.cards');
 
 import initialCards from './initial-сards.js';
+import {closeByOverlay, openModal, closeModal, closeModalEsc} from './utils.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
@@ -56,34 +57,7 @@ const formValid = new FormValidator(validationConfig);
 formValid.enableValidation();
 //
 
-const closeByOverlay = (evt) => {
-  if (evt.target.classList.contains('modal_opened')) {
-    closeModal(evt.target);
-  }
-}
 
-function openModal(modal) {
-  modal.classList.add('modal_opened');
-  document.addEventListener('keydown', closeModalEsc);
-  document.addEventListener('click', closeByOverlay);
-}
-
-function closeModal(modal) {
-  modal.classList.remove('modal_opened');
-  document.removeEventListener('keydown', closeModalEsc);
-  document.removeEventListener('click', closeByOverlay);
-}
-
-function closeModalEsc(evt) {
-  const modals = Array.from(document.querySelectorAll('.modal'));
-  if (evt.key === 'Escape') {
-    modals.forEach((modal) => {
-      if (modal.classList.contains('modal_opened')) {
-        closeModal(modal);
-      }
-    });
-  }
-}
 
 function saveProfileChanges(event) {
   event.preventDefault();
