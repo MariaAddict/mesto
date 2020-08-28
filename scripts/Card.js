@@ -1,9 +1,9 @@
+import { closeByOverlay, openModal, closeModal, closeModalEsc } from './utils.js';
+
 //для слушателя картинки
 const modalImage = document.querySelector('.modal_type_figure');
 const figureImgModal = modalImage.querySelector('.modal__image');
 const captionImgModal = modalImage.querySelector('.modal__caption');
-
-import { closeByOverlay, openModal, closeModal, closeModalEsc } from './utils.js';
 
 export default class Card {
     constructor(data, cardSelector) {

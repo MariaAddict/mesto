@@ -1,3 +1,8 @@
+import initialCards from './initial-сards.js';
+import { closeByOverlay, openModal, closeModal, closeModalEsc } from './utils.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 const modalEditProfile = document.querySelector('.modal_type_edit');
 const modalAddCard = document.querySelector('.modal_type_add');
 const modalImage = document.querySelector('.modal_type_figure');
@@ -23,13 +28,8 @@ const captionImgModal = modalImage.querySelector('.modal__caption');
 
 const cardsList = document.querySelector('.cards');
 
-import initialCards from './initial-сards.js';
-import { closeByOverlay, openModal, closeModal, closeModalEsc } from './utils.js';
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
 
 // добавление карточек
-
 function createCard(data) {
   const item = new Card(data, '.card-template');
   return item.generateCard(data);
