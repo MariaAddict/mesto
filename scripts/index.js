@@ -54,14 +54,10 @@ const validationConfig = {
   errorClass: 'modal__error_visible',
 };
 
-const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
-formList.forEach((formElement) => {
-  formElement.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-  });
-  const formValid = new FormValidator(validationConfig, formElement);
-  formValid.enableValidation(formElement);
-});
+const formValidEditProfile = new FormValidator(validationConfig, formEditProfile);
+formValidEditProfile.enableValidation();
+const formValidAddCard = new FormValidator(validationConfig, formAddCard);
+formValidAddCard.enableValidation();
 
 //отчистка ошибок и проверка кнопки при открытиии попапа
 const clearErrorByCloseModal = (form) => {
@@ -94,12 +90,12 @@ openModalAddButton.addEventListener('click', () => {
 
 closeModalEditButton.addEventListener('click', () => {
   closeModal(modalEditProfile);
-  clearErrorByCloseModal(formEditProfile);
+  // clearErrorByCloseModal(formEditProfile);
 });
 
 closeModalAddButton.addEventListener('click', () => {
   closeModal(modalAddCard);
-  clearErrorByCloseModal(formAddCard);
+  // clearErrorByCloseModal(formAddCard);
   formAddCard.reset();
 });
 closeModalImageButton.addEventListener('click', () => {
