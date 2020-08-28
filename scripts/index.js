@@ -54,10 +54,10 @@ const validationConfig = {
   errorClass: 'modal__error_visible',
 };
 
-const formValidEditProfile = new FormValidator(validationConfig, formEditProfile);
-formValidEditProfile.enableValidation();
-const formValidAddCard = new FormValidator(validationConfig, formAddCard);
-formValidAddCard.enableValidation();
+const formEditProfileForValidation = new FormValidator(validationConfig, formEditProfile);
+formEditProfileForValidation.enableValidation();
+const formAddCardForValidation = new FormValidator(validationConfig, formAddCard);
+formAddCardForValidation.enableValidation();
 //
 
 
@@ -72,12 +72,12 @@ openModalEditButton.addEventListener('click', () => {
   openModal(modalEditProfile);
   editModalInputName.value = nameProfile.textContent;
   editModalInputActivity.value = activityProfile.textContent;
-  formValidEditProfile.clearInputErrorCheckButton();
+  formEditProfileForValidation.clearInputErrorCheckButton();
 });
 
 openModalAddButton.addEventListener('click', () => {
   openModal(modalAddCard);
-  formValidAddCard.clearInputErrorCheckButton();
+  formAddCardForValidation.clearInputErrorCheckButton();
 });
 
 closeModalEditButton.addEventListener('click', () => {
