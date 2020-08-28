@@ -6,14 +6,14 @@ const captionImgModal = modalImage.querySelector('.modal__caption');
 import { closeByOverlay, openModal, closeModal, closeModalEsc } from './utils.js';
 
 export default class Card {
-    constructor(data, selectorClass) {
+    constructor(data, cardSelector) {
         this._image = data.link;
         this._title = data.name;
-        this._selectorClass = selectorClass;
+        this._cardSelector = cardSelector;
     }
 
     _getTemplate() {
-        const cardTemplate = document.querySelector(this._selectorClass).content.querySelector('.cards__item'); '.card-template'
+        const cardTemplate = document.querySelector(this._cardSelector).content.querySelector('.cards__item'); '.card-template'
         const cardItem = cardTemplate.cloneNode(true);
         return cardItem;
     }
