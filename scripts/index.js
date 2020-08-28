@@ -58,18 +58,8 @@ const formValidEditProfile = new FormValidator(validationConfig, formEditProfile
 formValidEditProfile.enableValidation();
 const formValidAddCard = new FormValidator(validationConfig, formAddCard);
 formValidAddCard.enableValidation();
-
-//отчистка ошибок и проверка кнопки при открытиии попапа
-const clearErrorByCloseModal = (form) => {
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-    });
-    const formValid = new FormValidator(validationConfig, formElement);
-    formValid.clearInputErrorCheckButton(form);
-  });
-}
 //
+
 
 function saveProfileChanges(event) {
   event.preventDefault();
@@ -82,20 +72,20 @@ openModalEditButton.addEventListener('click', () => {
   openModal(modalEditProfile);
   editModalInputName.value = nameProfile.textContent;
   editModalInputActivity.value = activityProfile.textContent;
+  formValidEditProfile.clearInputErrorCheckButton();
 });
 
 openModalAddButton.addEventListener('click', () => {
   openModal(modalAddCard);
+  formValidAddCard.clearInputErrorCheckButton();
 });
 
 closeModalEditButton.addEventListener('click', () => {
   closeModal(modalEditProfile);
-  // clearErrorByCloseModal(formEditProfile);
 });
 
 closeModalAddButton.addEventListener('click', () => {
   closeModal(modalAddCard);
-  // clearErrorByCloseModal(formAddCard);
   formAddCard.reset();
 });
 closeModalImageButton.addEventListener('click', () => {

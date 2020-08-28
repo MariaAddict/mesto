@@ -87,16 +87,16 @@ export default class FormValidator {
     }
 
     //отчистка ошибок и проверка кнопки при открытиии попапа
-    clearInputErrorCheckButton(form) {
-        const inputList = Array.from(form.querySelectorAll(this._inputSelector));
-        const submitButton = form.querySelector('.modal__save-button');
+    clearInputErrorCheckButton() {
+        const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        const submitButton = this._formElement.querySelector('.modal__save-button');
+         //проверка кнопки при открытиии попапа
+         this._toggleButtonState(inputList, submitButton);
         inputList.forEach((inputElement) => {
-            const errorElement = form.querySelector(`#${inputElement.id}-error`);
+            const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
             inputElement.classList.remove(this._inputErrorClass);
             errorElement.textContent = '';
             errorElement.classList.remove(this._errorClass);
-            //проверка кнопки при открытиии попапа
-            this._toggleButtonState(inputList, submitButton);
         });
     }
 }
