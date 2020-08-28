@@ -108,8 +108,7 @@ closeModalImageButton.addEventListener('click', () => {
 formEditProfile.addEventListener('submit', (evt) => { saveProfileChanges(evt); });
 formAddCard.addEventListener('submit', (event) => {
   event.preventDefault();
-  headerImage.textContent = '';
-  urlImage.textContent = '';
   addCard({ name: headerImage.value, link: urlImage.value });
   closeModal(modalAddCard);
+  formAddCard.reset();
 });
