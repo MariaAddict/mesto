@@ -11,7 +11,7 @@ export default class FormValidator {
 
     enableValidation() {
         this._formElement.addEventListener('submit', function (evt) {
-                evt.preventDefault();
+            evt.preventDefault();
         });
         this._setEventListeners();
     }
@@ -90,8 +90,8 @@ export default class FormValidator {
     clearInputErrorCheckButton() {
         const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         const submitButton = this._formElement.querySelector('.modal__save-button');
-         //проверка кнопки при открытиии попапа
-         this._toggleButtonState(inputList, submitButton);
+        //проверка кнопки при открытиии попапа
+        this._toggleButtonState(inputList, submitButton);
         inputList.forEach((inputElement) => {
             const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
             inputElement.classList.remove(this._inputErrorClass);
