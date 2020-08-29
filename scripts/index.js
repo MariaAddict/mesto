@@ -30,8 +30,9 @@ const cardsList = document.querySelector('.cards');
 
 
 // добавление карточек
+const cardTemplateSelector = '.card-template';
 function createCard(data) {
-  const item = new Card(data, '.card-template');
+  const item = new Card(data, cardTemplateSelector);
   return item.generateCard(data);
 }
 
