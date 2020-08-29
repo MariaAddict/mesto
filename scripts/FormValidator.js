@@ -89,7 +89,7 @@ export default class FormValidator {
     //отчистка ошибок и проверка кнопки при открытиии попапа
     clearInputErrorCheckButton() {
         const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-        const submitButton = this._formElement.querySelector('.modal__save-button');
+        const submitButton = this._formElement.querySelector(this._submitButtonSelector);
         //проверка кнопки при открытиии попапа
         this._toggleButtonState(inputList, submitButton);
         inputList.forEach((inputElement) => {
