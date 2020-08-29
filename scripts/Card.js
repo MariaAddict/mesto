@@ -1,4 +1,4 @@
-import { closeByOverlay, openModal, closeModal, closeModalEsc } from './utils.js';
+import {openModal} from './utils.js';
 
 //для слушателя картинки
 const modalImage = document.querySelector('.modal_type_figure');

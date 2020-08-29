@@ -90,9 +90,6 @@ closeModalAddButton.addEventListener('click', () => {
 });
 closeModalImageButton.addEventListener('click', () => {
   closeModal(modalImage);
-  figureImgModal.src = '';
-  figureImgModal.alt = '';
-  captionImgModal.textContent = '';
 });
 
 formEditProfile.addEventListener('submit', (evt) => { saveProfileChanges(evt); });
