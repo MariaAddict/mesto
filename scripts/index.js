@@ -1,5 +1,5 @@
 import initialCards from './initial-сards.js';
-import { closeByOverlay, openModal, closeModal, closeModalEsc } from './utils.js';
+import { openModal, closeModal } from './utils.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
