@@ -1,7 +1,7 @@
-import initialCards from './initial-сards.js';
-import { openModal, closeModal } from './utils.js';
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import initialCards from '../utils/initial-сards.js';
+import { openModal, closeModal } from '../utils/utils.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
 
 const modalEditProfile = document.querySelector('.modal_type_edit');
 const modalAddCard = document.querySelector('.modal_type_add');
