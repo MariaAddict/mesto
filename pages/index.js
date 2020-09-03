@@ -2,6 +2,7 @@ import initialCards from '../utils/initial-сards.js';
 import { openModal, closeModal } from '../utils/utils.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
 
 const modalEditProfile = document.querySelector('.modal_type_edit');
 const modalAddCard = document.querySelector('.modal_type_add');
@@ -31,18 +32,30 @@ const cardsList = document.querySelector('.cards');
 
 // добавление карточек
 const cardTemplateSelector = '.card-template';
-function createCard(data) {
-  const item = new Card(data, cardTemplateSelector);
-  return item.generateCard(data);
-}
+const cardContainerSelector = '.cards';
 
-initialCards.forEach((data) => {
-  cardsList.append(createCard(data));
-});
+const cardItemList = new Section({
+  items: initialCards, renderer: (data) => {
+    const item = new Card(data, cardTemplateSelector);
+    const cardElement = item.generateCard(data);
+    cardItemList.setItem(cardElement);
+  }
+}, cardContainerSelector);
 
-function addCard(data) {
-  cardsList.prepend(createCard(data));
-}
+cardItemList.renderItems(initialCards);
+
+// function createCard(data) {
+//   const item = new Card(data, cardTemplateSelector);
+//   return item.generateCard(data);
+// }
+
+// initialCards.forEach((data) => {
+//   cardsList.append(createCard(data));
+// });
+
+// function addCard(data) {
+//   cardsList.prepend(createCard(data));
+// }
 //
 
 //валидация и объект классов 
@@ -96,7 +109,7 @@ closeModalImageButton.addEventListener('click', () => {
 formEditProfile.addEventListener('submit', (evt) => { saveProfileChanges(evt); });
 formAddCard.addEventListener('submit', (event) => {
   event.preventDefault();
-  addCard({ name: headerImage.value, link: urlImage.value });
+  // addCard({ name: headerImage.value, link: urlImage.value });
   closeModal(modalAddCard);
   formAddCard.reset();
 });
