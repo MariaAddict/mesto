@@ -3,6 +3,7 @@ import { openModal, closeModal } from '../utils/utils.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
 
 const modalEditProfile = document.querySelector('.modal_type_edit');
 const modalAddCard = document.querySelector('.modal_type_add');
@@ -80,6 +81,7 @@ function saveProfileChanges(event) {
   nameProfile.textContent = editModalInputName.value;
   activityProfile.textContent = editModalInputActivity.value;
   closeModal(modalEditProfile);
+  
 }
 
 openModalEditButton.addEventListener('click', () => {
