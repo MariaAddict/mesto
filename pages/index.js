@@ -106,15 +106,6 @@ openModalAddButton.addEventListener('click', () => {
   formAddCardForValidation.clearInputErrorCheckButton();
 });
 
-function saveProfileChanges(event) {
-  event.preventDefault();
-  nameProfile.textContent = editModalInputName.value;
-  activityProfile.textContent = editModalInputActivity.value;
-  closeModal(modalEditProfile);
-  
-}
-
-
 //кнопки закрытия
 closeModalEditButton.addEventListener('click', () => {
   EditForm.close();
