@@ -1,5 +1,4 @@
-const nameProfile = document.querySelector('.profile__name');
-const activityProfile = document.querySelector('.profile__activity-type');
+import {nameProfile, activityProfile} from '../utils/constants.js'
 
 export default class UserInfo {
     constructor(data) {

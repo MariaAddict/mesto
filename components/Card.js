@@ -1,10 +1,3 @@
-import {openModal} from '../utils/utils.js';
-
-//для слушателя картинки
-const modalImage = document.querySelector('.modal_type_figure');
-const figureImgModal = modalImage.querySelector('.modal__image');
-const captionImgModal = modalImage.querySelector('.modal__caption');
-
 export default class Card {
     constructor(data, cardSelector, {handleCardClick}) {
         this._title = data.name;
