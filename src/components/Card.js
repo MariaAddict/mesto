@@ -6,16 +6,15 @@ export default class Card {
         this._handleCardClick = () => {
             handleCardClick({ name: this._cardTitle.textContent, link: this._cardImage.src });
         }
+        this._removeCard = () => {
+            this._card.remove();
+        }
     }
 
     _getTemplate() {
         const cardTemplate = document.querySelector(this._cardSelector).content.querySelector('.cards__item'); '.card-template'
         const cardItem = cardTemplate.cloneNode(true);
         return cardItem;
-    }
-
-    _removeCard = () => {
-        this._card.remove();
     }
 
     _setEventListeners() {

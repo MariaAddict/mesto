@@ -1,3 +1,4 @@
+import './index.css';
 import initialCards from '../utils/initial-сards.js';
 import {
   formEditProfile, formAddCard, openModalEditButton, openModalAddButton, nameProfile,
