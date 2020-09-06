@@ -74,10 +74,8 @@ const AddForm = new PopupWithForm( {popupSelector:'.modal_type_add',
 saveFormData: (data) => {
   const card = new Card( data , cardTemplateSelector,
     {handleCardClick: (cardItem) => {
-      {
         const popupImage = new PopupWithImage(cardItem, '.modal_type_figure');
         popupImage.open();
-      }
     }});
     const cardElement = card.generateCard();
     cardItemList.addItem(cardElement);
@@ -104,16 +102,4 @@ openModalEditButton.addEventListener('click', () => {
 openModalAddButton.addEventListener('click', () => {
   AddForm.open();
   formAddCardForValidation.clearInputErrorCheckButton();
-});
-
-//кнопки закрытия
-closeModalEditButton.addEventListener('click', () => {
-  EditForm.close();
-});
-closeModalAddButton.addEventListener('click', () => {
-  AddForm.close();
-});
-closeModalImageButton.addEventListener('click', () => {
-  closeModal(modalImage);
-  // popupImage.close();
 });

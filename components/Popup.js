@@ -29,6 +29,9 @@ export default class Popup {
     setEventListeners() {
         document.addEventListener('keydown', this._handleEscClose);
         document.addEventListener('click', this._closeByOverlay);
+        this._popup.querySelector('.modal__close-button').addEventListener('click', () => {
+            this.close();
+        });
     }
 
     removeEventListeners() {
