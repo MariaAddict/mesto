@@ -3,16 +3,16 @@ export default class Popup {
         this._popup = document.querySelector(popupSelector);
         this._handleEscClose = (evt) => {
             if (evt.key === 'Escape') {
-                  if (this._popup.classList.contains('modal_opened')) {
+                if (this._popup.classList.contains('modal_opened')) {
                     this.close();
-                  }
+                }
             }
         }
-    
+
         this._closeByOverlay = (evt) => {
             if (evt.target.classList.contains('modal_opened')) {
                 this.close();
-              }
+            }
         }
     }
 

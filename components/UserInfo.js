@@ -1,4 +1,4 @@
-import {nameProfile, activityProfile} from '../utils/constants.js'
+import { nameProfile, activityProfile } from '../utils/constants.js'
 
 export default class UserInfo {
     constructor(data) {
