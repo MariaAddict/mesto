@@ -6,6 +6,7 @@ import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
 
 const modalEditProfile = document.querySelector('.modal_type_edit');
 const modalAddCard = document.querySelector('.modal_type_add');
@@ -87,17 +88,16 @@ saveFormData: (data) => {
 // добавление формы "Редактировать профиль"
 const EditForm = new PopupWithForm({popupSelector: '.modal_type_edit', 
 saveFormData: (item) => {
-  nameProfile.textContent = item.name;
-  activityProfile.textContent = item.activity;
+  const user = new UserInfo(item);
+  user.setUserInfo();
   EditForm.close();
 }
 });
 
 openModalEditButton.addEventListener('click', () => {
-  openModal(modalEditProfile);
   EditForm.open();
-  editModalInputName.value = nameProfile.textContent;
-  editModalInputActivity.value = activityProfile.textContent;
+  const userInfoOpen = new UserInfo(nameProfile.textContent,  activityProfile.textContent);
+  userInfoOpen.getUserInfo();
   formEditProfileForValidation.clearInputErrorCheckButton();
 });
 
