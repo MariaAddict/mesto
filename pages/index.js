@@ -4,6 +4,8 @@ import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 const modalEditProfile = document.querySelector('.modal_type_edit');
 const modalAddCard = document.querySelector('.modal_type_add');
@@ -37,27 +39,16 @@ const cardContainerSelector = '.cards';
 
 const cardItemList = new Section({
   items: initialCards, renderer: (data) => {
-    const item = new Card(data, cardTemplateSelector);
+    const item = new Card(data, cardTemplateSelector, {handleCardClick: (cardItem) => {
+      const popupImage = new PopupWithImage(cardItem, '.modal_type_figure');
+      popupImage.open();
+    }});
     const cardElement = item.generateCard(data);
     cardItemList.setItem(cardElement);
   }
 }, cardContainerSelector);
 
 cardItemList.renderItems(initialCards);
-
-// function createCard(data) {
-//   const item = new Card(data, cardTemplateSelector);
-//   return item.generateCard(data);
-// }
-
-// initialCards.forEach((data) => {
-//   cardsList.append(createCard(data));
-// });
-
-// function addCard(data) {
-//   cardsList.prepend(createCard(data));
-// }
-//
 
 //валидация и объект классов 
 const validationConfig = {
@@ -76,6 +67,45 @@ formAddCardForValidation.enableValidation();
 //
 
 
+
+// добавление формы "Новое место"
+const AddForm = new PopupWithForm( {popupSelector:'.modal_type_add', 
+saveFormData: (data) => {
+  const card = new Card( data , cardTemplateSelector,
+    {handleCardClick: (cardItem) => {
+      {
+        const popupImage = new PopupWithImage(cardItem, '.modal_type_figure');
+        popupImage.open();
+      }
+    }});
+    const cardElement = card.generateCard();
+    cardItemList.addItem(cardElement);
+    AddForm.close();
+}
+});
+
+// добавление формы "Редактировать профиль"
+const EditForm = new PopupWithForm({popupSelector: '.modal_type_edit', 
+saveFormData: (item) => {
+  nameProfile.textContent = item.name;
+  activityProfile.textContent = item.activity;
+  EditForm.close();
+}
+});
+
+openModalEditButton.addEventListener('click', () => {
+  openModal(modalEditProfile);
+  EditForm.open();
+  editModalInputName.value = nameProfile.textContent;
+  editModalInputActivity.value = activityProfile.textContent;
+  formEditProfileForValidation.clearInputErrorCheckButton();
+});
+
+openModalAddButton.addEventListener('click', () => {
+  AddForm.open();
+  formAddCardForValidation.clearInputErrorCheckButton();
+});
+
 function saveProfileChanges(event) {
   event.preventDefault();
   nameProfile.textContent = editModalInputName.value;
@@ -84,34 +114,15 @@ function saveProfileChanges(event) {
   
 }
 
-openModalEditButton.addEventListener('click', () => {
-  openModal(modalEditProfile);
-  editModalInputName.value = nameProfile.textContent;
-  editModalInputActivity.value = activityProfile.textContent;
-  formEditProfileForValidation.clearInputErrorCheckButton();
-});
 
-openModalAddButton.addEventListener('click', () => {
-  openModal(modalAddCard);
-  formAddCardForValidation.clearInputErrorCheckButton();
-});
-
+//кнопки закрытия
 closeModalEditButton.addEventListener('click', () => {
-  closeModal(modalEditProfile);
+  EditForm.close();
 });
-
 closeModalAddButton.addEventListener('click', () => {
-  closeModal(modalAddCard);
-  formAddCard.reset();
+  AddForm.close();
 });
 closeModalImageButton.addEventListener('click', () => {
   closeModal(modalImage);
-});
-
-formEditProfile.addEventListener('submit', (evt) => { saveProfileChanges(evt); });
-formAddCard.addEventListener('submit', (event) => {
-  event.preventDefault();
-  // addCard({ name: headerImage.value, link: urlImage.value });
-  closeModal(modalAddCard);
-  formAddCard.reset();
+  // popupImage.close();
 });
