@@ -11,16 +11,25 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 
+//попап картинки
+const popupImage = new PopupWithImage({name: "", link: "#"}, '.modal_type_figure');
+//
+function createCard(data){
+  const card = new Card(data, cardTemplateSelector, {
+    handleCardClick: (cardItem) => {
+      console.log(cardItem);
+      popupImage.open(cardItem);
+    }
+  });
+  return card;
+}
+
+
 // добавление карточек
 const cardItemList = new Section({
   items: initialCards, renderer: (data) => {
-    const item = new Card(data, cardTemplateSelector, {
-      handleCardClick: (cardItem) => {
-        const popupImage = new PopupWithImage(cardItem, '.modal_type_figure');
-        popupImage.open();
-      }
-    });
-    const cardElement = item.generateCard(data);
+    const card = createCard(data);
+    const cardElement = card.generateCard(data);
     cardItemList.setItem(cardElement);
   }
 }, cardContainerSelector);
@@ -43,20 +52,15 @@ const formAddCardForValidation = new FormValidator(validationConfig, formAddCard
 formAddCardForValidation.enableValidation();
 //
 
+
 // добавление формы "Новое место"
-const AddForm = new PopupWithForm({
+const addForm = new PopupWithForm({
   popupSelector: '.modal_type_add',
   saveFormData: (data) => {
-    const card = new Card(data, cardTemplateSelector,
-      {
-        handleCardClick: (cardItem) => {
-          const popupImage = new PopupWithImage(cardItem, '.modal_type_figure');
-          popupImage.open();
-        }
-      });
+    const card = createCard(data);
     const cardElement = card.generateCard();
     cardItemList.addItem(cardElement);
-    AddForm.close();
+    addForm.close();
   }
 });
 
@@ -64,22 +68,22 @@ const AddForm = new PopupWithForm({
 const user = new UserInfo({name: nameProfile, activity: activityProfile});
 
 // добавление формы "Редактировать профиль"
-const EditForm = new PopupWithForm({
+const editForm = new PopupWithForm({
   popupSelector: '.modal_type_edit',
   saveFormData: (item) => {
     user.setUserInfo(item);
-    EditForm.close();
+    editForm.close();
   }
 });
 
 //слушатели
-AddForm.setEventListeners();
-EditForm.setEventListeners();
+addForm.setEventListeners();
+editForm.setEventListeners();
 popupImage.setEventListeners();
 
 //кнопки открытия модалок
 openModalEditButton.addEventListener('click', () => {
-  EditForm.open();
+  editForm.open();
   const dataUser = user.getUserInfo();
   formEditProfile.querySelectorAll('.modal__item').forEach(input => {
     input.value = dataUser[input.name];
@@ -88,6 +92,6 @@ openModalEditButton.addEventListener('click', () => {
 });
 
 openModalAddButton.addEventListener('click', () => {
-  AddForm.open();
+  addForm.open();
   formAddCardForValidation.clearInputErrorCheckButton();
 });
