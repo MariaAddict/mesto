@@ -18,24 +18,18 @@ export default class Popup {
 
     open() {
         this._popup.classList.add('modal_opened');
-        this.setEventListeners();
+        document.addEventListener('keydown', this._handleEscClose);
     }
 
     close() {
         this._popup.classList.remove('modal_opened');
-        this.removeEventListeners();
+        document.removeEventListener('keydown', this._handleEscClose);
     }
 
     setEventListeners() {
-        document.addEventListener('keydown', this._handleEscClose);
         document.addEventListener('click', this._closeByOverlay);
         this._popup.querySelector('.modal__close-button').addEventListener('click', () => {
             this.close();
         });
-    }
-
-    removeEventListeners() {
-        document.removeEventListener('keydown', this._handleEscClose);
-        document.removeEventListener('click', this._closeByOverlay);
     }
 }

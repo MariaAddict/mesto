@@ -72,6 +72,11 @@ const EditForm = new PopupWithForm({
   }
 });
 
+//слушатели
+AddForm.setEventListeners();
+EditForm.setEventListeners();
+popupImage.setEventListeners();
+
 //кнопки открытия модалок
 openModalEditButton.addEventListener('click', () => {
   EditForm.open();
