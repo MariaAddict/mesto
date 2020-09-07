@@ -17,7 +17,6 @@ const popupImage = new PopupWithImage({name: "", link: "#"}, '.modal_type_figure
 function createCard(data){
   const card = new Card(data, cardTemplateSelector, {
     handleCardClick: (cardItem) => {
-      console.log(cardItem);
       popupImage.open(cardItem);
     }
   });
