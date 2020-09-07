@@ -60,12 +60,14 @@ const AddForm = new PopupWithForm({
   }
 });
 
+//создание класса информации профиля
+const user = new UserInfo({name: nameProfile, activity: activityProfile});
+
 // добавление формы "Редактировать профиль"
 const EditForm = new PopupWithForm({
   popupSelector: '.modal_type_edit',
   saveFormData: (item) => {
-    const user = new UserInfo(item);
-    user.setUserInfo();
+    user.setUserInfo(item);
     EditForm.close();
   }
 });
@@ -73,8 +75,10 @@ const EditForm = new PopupWithForm({
 //кнопки открытия модалок
 openModalEditButton.addEventListener('click', () => {
   EditForm.open();
-  const userInfoOpen = new UserInfo(nameProfile.textContent, activityProfile.textContent);
-  userInfoOpen.getUserInfo();
+  const dataUser = user.getUserInfo();
+  formEditProfile.querySelectorAll('.modal__item').forEach(input => {
+    input.value = dataUser[input.name];
+  });
   formEditProfileForValidation.clearInputErrorCheckButton();
 });
 
