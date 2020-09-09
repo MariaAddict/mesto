@@ -12,7 +12,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 
 //попап картинки
-const popupImage = new PopupWithImage({name: "", link: "#"}, '.modal_type_figure');
+const popupImage = new PopupWithImage('.modal_type_figure');
 //
 function createCard(data){
   const card = new Card(data, cardTemplateSelector, {
