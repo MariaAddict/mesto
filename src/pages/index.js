@@ -20,15 +20,15 @@ function createCard(data){
       popupImage.open(cardItem);
     }
   });
-  return card;
+  const cardElement = card.generateCard(data);
+  return cardElement;
 }
 
 
 // добавление карточек
 const cardItemList = new Section({
   items: initialCards, renderer: (data) => {
-    const card = createCard(data);
-    const cardElement = card.generateCard(data);
+    const cardElement = createCard(data);
     cardItemList.setItem(cardElement);
   }
 }, cardContainerSelector);
@@ -56,8 +56,7 @@ formAddCardForValidation.enableValidation();
 const addForm = new PopupWithForm({
   popupSelector: '.modal_type_add',
   saveFormData: (data) => {
-    const card = createCard(data);
-    const cardElement = card.generateCard();
+    const cardElement = createCard(data);
     cardItemList.addItem(cardElement);
     addForm.close();
   }
