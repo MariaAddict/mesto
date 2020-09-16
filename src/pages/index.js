@@ -38,15 +38,15 @@ function createCard(data) {
 
 
 // добавление карточек
-api.getInitialCard().then(cards => {
 const cardItemList = new Section({
-  items: cards, renderer: (data) => {
+  renderer: (data) => {
     const cardElement = createCard(data);
     cardItemList.setItem(cardElement);
   }
 }, cardContainerSelector);
 
-cardItemList.renderItems(cards);
+api.getInitialCard().then(cards => {
+  cardItemList.renderItems(cards);
 });
 
 //валидация и объект классов 
@@ -70,8 +70,10 @@ formAddCardForValidation.enableValidation();
 const addForm = new PopupWithForm({
   popupSelector: '.modal_type_add',
   saveFormData: (data) => {
+    console.log(data);
     const cardElement = createCard(data);
     cardItemList.addItem(cardElement);
+    api.addCard(data);
     addForm.close();
   }
 });

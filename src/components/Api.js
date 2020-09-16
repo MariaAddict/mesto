@@ -12,6 +12,17 @@ export default class Api {
         .then(res => { return res.json(); })
     }
 
+    addCard(card) {
+        return fetch(`${this._url}cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: card.name,
+                link: card.link
+            })
+        }).then(res => { return res.json(); })
+    }
+
     getUserInfo() {
         return fetch(`${this._url}users/me`, {
             method: 'GET',
