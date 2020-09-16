@@ -1,9 +1,9 @@
 import './index.css';
-import initialCards from '../utils/initial-сards.js';
 import {
   formEditProfile, formAddCard, openModalEditButton, openModalAddButton, nameProfile,
   activityProfile, cardTemplateSelector, cardContainerSelector
 } from '../utils/constants.js';
+import Api from '../components/Api.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -11,10 +11,19 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 
+//создание api
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/',
+  {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: 'e7e08b6b-adf3-43f0-9ed1-13df27223916'
+    }
+  });
+
 //попап картинки
 const popupImage = new PopupWithImage('.modal_type_figure');
 //
-function createCard(data){
+function createCard(data) {
   const card = new Card(data, cardTemplateSelector, {
     handleCardClick: (cardItem) => {
       popupImage.open(cardItem);
@@ -26,14 +35,16 @@ function createCard(data){
 
 
 // добавление карточек
+api.getInitialCard().then(cards => {
 const cardItemList = new Section({
-  items: initialCards, renderer: (data) => {
+  items: cards, renderer: (data) => {
     const cardElement = createCard(data);
     cardItemList.setItem(cardElement);
   }
 }, cardContainerSelector);
 
-cardItemList.renderItems(initialCards);
+cardItemList.renderItems(cards);
+});
 
 //валидация и объект классов 
 const validationConfig = {
@@ -63,7 +74,7 @@ const addForm = new PopupWithForm({
 });
 
 //создание класса информации профиля
-const user = new UserInfo({name: nameProfile, activity: activityProfile});
+const user = new UserInfo({ name: nameProfile, activity: activityProfile });
 
 // добавление формы "Редактировать профиль"
 const editForm = new PopupWithForm({
@@ -93,3 +104,4 @@ openModalAddButton.addEventListener('click', () => {
   addForm.open();
   formAddCardForValidation.clearInputErrorCheckButton();
 });
+
