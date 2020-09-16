@@ -20,6 +20,8 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/',
     }
   });
 
+// api.getUserInfo().then(res => {console.log(res)});
+
 //попап картинки
 const popupImage = new PopupWithImage('.modal_type_figure');
 //
@@ -74,6 +76,11 @@ const addForm = new PopupWithForm({
 });
 
 //создание класса информации профиля
+api.getUserInfo().then(dataUser => {
+  nameProfile.textContent = dataUser.name;
+  activityProfile.textContent = dataUser.about;
+});
+
 const user = new UserInfo({ name: nameProfile, activity: activityProfile });
 
 // добавление формы "Редактировать профиль"
@@ -81,6 +88,7 @@ const editForm = new PopupWithForm({
   popupSelector: '.modal_type_edit',
   saveFormData: (item) => {
     user.setUserInfo(item);
+    console.log(item);
     editForm.close();
   }
 });

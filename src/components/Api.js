@@ -11,6 +11,13 @@ export default class Api {
         })
         .then(res => { return res.json(); })
     }
+
+    getUserInfo() {
+        return fetch(`${this._url}users/me`, {
+            method: 'GET',
+            headers: this._headers
+        }).then(res => { return res.json(); })
+    }
 }
 
 // fetch('https://mesto.nomoreparties.co/v1/cohort-15/users/me', {
