@@ -1,7 +1,7 @@
 import './index.css';
 import {
   formEditProfile, formAddCard, openModalEditButton, openModalAddButton, nameProfile,
-  activityProfile, cardTemplateSelector, cardContainerSelector
+  activityProfile, imageProfile, cardTemplateSelector, cardContainerSelector
 } from '../utils/constants.js';
 import Api from '../components/Api.js';
 import Card from '../components/Card.js';
@@ -20,7 +20,8 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/',
     }
   });
 
-// api.getUserInfo().then(res => {console.log(res)});
+//  api.editUserInfo().then(res => {console.log(res)});
+
 
 //попап картинки
 const popupImage = new PopupWithImage('.modal_type_figure');
@@ -79,6 +80,7 @@ const addForm = new PopupWithForm({
 api.getUserInfo().then(dataUser => {
   nameProfile.textContent = dataUser.name;
   activityProfile.textContent = dataUser.about;
+  imageProfile.src = dataUser.avatar;
 });
 
 const user = new UserInfo({ name: nameProfile, activity: activityProfile });
@@ -88,7 +90,7 @@ const editForm = new PopupWithForm({
   popupSelector: '.modal_type_edit',
   saveFormData: (item) => {
     user.setUserInfo(item);
-    console.log(item);
+    api.editUserInfo(item);
     editForm.close();
   }
 });

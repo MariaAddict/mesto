@@ -12,6 +12,7 @@ const openModalAddButton = document.querySelector('.profile__add-button');
 //данные профиля на странице
 const nameProfile = document.querySelector('.profile__name');
 const activityProfile = document.querySelector('.profile__activity-type');
+const imageProfile = document.querySelector('.profile__image');
 
 //селекторы карточек
 const cardTemplateSelector = '.card-template';
@@ -19,5 +20,5 @@ const cardContainerSelector = '.cards';
 
 export {
     modalEditProfile, modalAddCard, formEditProfile, formAddCard, openModalEditButton, openModalAddButton, nameProfile,
-    activityProfile, cardTemplateSelector, cardContainerSelector
+    activityProfile, imageProfile, cardTemplateSelector, cardContainerSelector
 }

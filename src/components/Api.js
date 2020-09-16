@@ -18,6 +18,17 @@ export default class Api {
             headers: this._headers
         }).then(res => { return res.json(); })
     }
+
+    editUserInfo(userInfo) {
+        return fetch(`${this._url}users/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: userInfo.name,
+                about: userInfo.activity
+            })
+        }).then(res => { return res.json(); })
+    }
 }
 
 // fetch('https://mesto.nomoreparties.co/v1/cohort-15/users/me', {
