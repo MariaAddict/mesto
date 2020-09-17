@@ -70,6 +70,24 @@
                 <button type="button" class="modal__close-button"></button>
             </div>
         </div>
+        <div class="modal modal_type_check">
+            <div class="modal__container modal__container_type_check">
+                <h2 class="modal__title">Вы уверены?</h2>
+                <form action="#" name="modal-form" class="modal__form" novalidate>
+                <button type="submit" class="modal__save-button">Да</button>
+                </form>
+                <button type="button" class="modal__close-button"></button>
+            </div>
+        </div>
+        <div class="modal modal_type_avatar">
+            <div class="modal__container">
+                <h2 class="modal__title">Обновить аватар</h2>
+                <input type="url" name="link" class="modal__item modal__item_type_url-image" placeholder="Ссылка на картинку" id="url" autocomplete="off" required>
+                <span class="modal__error modal__error_visible" id="url-error"></span>
+                <button type="submit" class="modal__save-button">Сохранить</button>
+                <button type="button" class="modal__close-button"></button>
+            </div>
+        </div>
         <template class="card-template">
             <li class="cards__item">
                 <img src="#" alt="" class="cards__image">

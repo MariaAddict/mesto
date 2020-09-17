@@ -23,6 +23,15 @@ export default class Api {
         }).then(res => { return res.json(); })
     }
 
+    deleteCard(id) {
+        // return fetch(`${this._url}cards/${id}`, {
+        //     method: 'DELETE',
+        //     headers: this._headers,
+        //     body: JSON.stringify(card)
+        // }).then(res => { return res.json(); })
+        console.log(id);
+    }
+
     getUserInfo() {
         return fetch(`${this._url}users/me`, {
             method: 'GET',
