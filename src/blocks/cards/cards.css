@@ -5,14 +5,14 @@
 @import url(./__like/cards__like.css);
 @import url(./__like/_pressed/card__like_pressed.css);
 @import url(./__delete/cards__delete.css);
-
+@import url(./__number-of-likes/cards__number-of-likes.css);
 .cards {
     width: 100%;
     margin: 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-   /* grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));*/
+    /* grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));*/
     gap: 21px 18px;
     justify-items: center;
 }

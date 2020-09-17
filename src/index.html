@@ -39,11 +39,9 @@
             <div class="modal__container">
                 <h2 class="modal__title">Редактировать профиль</h2>
                 <form action="#" name="modal-form" class="modal__form" novalidate>
-                    <input type="text" name="name" class="modal__item modal__item_type_name"
-                     placeholder="Имя профиля" minlength="2" maxlength="40" id="label" autocomplete="off" required>
+                    <input type="text" name="name" class="modal__item modal__item_type_name" placeholder="Имя профиля" minlength="2" maxlength="40" id="label" autocomplete="off" required>
                     <span class="modal__error modal__error_visible" id="label-error"></span>
-                    <input type="text" name="activity" class="modal__item modal__item_type_activity-type"
-                    placeholder="О себе" minlength="2" maxlength="200" id="activity" autocomplete="off" required>
+                    <input type="text" name="activity" class="modal__item modal__item_type_activity-type" placeholder="О себе" minlength="2" maxlength="200" id="activity" autocomplete="off" required>
                     <span class="modal__error modal__error_visible" id="activity-error"></span>
                     <button type="submit" class="modal__save-button">Сохранить</button>
                 </form>
@@ -54,11 +52,9 @@
             <div class="modal__container">
                 <h2 class="modal__title">Новое место</h2>
                 <form action="#" name="modal-form" class="modal__form" novalidate>
-                    <input type="text" name="name" class="modal__item modal__item_type_header-image"
-                        placeholder="Название" id="name" minlength="1" maxlength="30" autocomplete="off" required>
+                    <input type="text" name="name" class="modal__item modal__item_type_header-image" placeholder="Название" id="name" minlength="1" maxlength="30" autocomplete="off" required>
                     <span class="modal__error modal__error_visible" id="name-error"></span>
-                    <input type="url" name="link" class="modal__item modal__item_type_url-image"
-                        placeholder="Ссылка на картинку" id="url" autocomplete="off" required>
+                    <input type="url" name="link" class="modal__item modal__item_type_url-image" placeholder="Ссылка на картинку" id="url" autocomplete="off" required>
                     <span class="modal__error modal__error_visible" id="url-error"></span>
                     <button type="submit" class="modal__save-button" disabled>Создать</button>
                 </form>
@@ -79,7 +75,10 @@
                 <img src="#" alt="" class="cards__image">
                 <div class="cards__description">
                     <h3 class="cards__title"></h3>
-                    <button type="button" class="cards__like"></button>
+                    <div class="cards__likes">
+                      <button type="button" class="cards__like"></button>
+                      <p class="cards__number-of-likes"></p>
+                    </div>
                 </div>
                 <button type="button" class="cards__delete"></button>
             </li>
