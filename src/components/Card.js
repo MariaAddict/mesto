@@ -1,5 +1,5 @@
 export default class Card {
-    constructor(data, cardSelector, { handleCardClick }, { handleDeleteClick }, {handleLikeClick}) {
+    constructor(data, cardSelector, { handleCardClick }, { handleDeleteClick }, { handleLikeClick }) {
         this._title = data.name;
         this._image = data.link;
         this._id = data.id;
@@ -8,7 +8,7 @@ export default class Card {
         this._handleCardClick = () => {
             handleCardClick({ name: this._cardTitle.textContent, link: this._cardImage.src });
         }
-        this._handleDeleteClick = () => { handleDeleteClick (data._id, this._card)};
+        this._handleDeleteClick = () => { handleDeleteClick(data._id, this._card) };
         this._handleLikeClick = (evt) => {
             evt.target.classList.toggle('card__like_pressed');
             handleLikeClick(data._id, this._card, this._likes)
@@ -40,9 +40,9 @@ export default class Card {
             this._card.querySelector('.cards__delete').style.visibility = 'hidden';
         }
 
-        
 
-        if (like) { 
+
+        if (like) {
             this._likeButton.classList.add('card__like_pressed');
 
         } else {
@@ -53,7 +53,7 @@ export default class Card {
         this._cardImage.alt = this._title;
         this._cardTitle.textContent = this._title;
         this._numberOfLikes.textContent = this._likes;
-        
+
 
         return this._card;
     }

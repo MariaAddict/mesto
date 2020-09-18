@@ -1,5 +1,5 @@
 export default class Api {
-    constructor(url, {headers}) {
+    constructor(url, { headers }) {
         this._url = url;
         this._headers = headers;
     }
@@ -9,7 +9,12 @@ export default class Api {
             method: 'GET',
             headers: this._headers
         })
-        .then(res => { return res.json(); })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(res.status);
+            })
     }
 
     addCard(card) {
@@ -20,24 +25,39 @@ export default class Api {
                 name: card.name,
                 link: card.link
             })
-        }).then(res => { 
-            return res.json(); })
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(res.status);
+        })
     }
 
     deleteCard(id) {
         return fetch(`${this._url}cards/${id}`, {
             method: 'DELETE',
             headers: this._headers,
-        }).then(res => { 
-        return res.json();})
-        
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(res.status);
+        }).catch(err => {
+            console.log(err);
+        });
+
     }
 
     getUserInfo() {
         return fetch(`${this._url}users/me`, {
             method: 'GET',
             headers: this._headers
-        }).then(res => { return res.json(); })
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(res.status);
+        })
     }
 
     editUserInfo(userInfo) {
@@ -48,25 +68,40 @@ export default class Api {
                 name: userInfo.name,
                 about: userInfo.activity
             })
-        }).then(res => { return res.json(); })
-    }
-
-    getAppInfo() {
-        return Promise.all([this.getInitialCard(), this.getUserInfo()]);
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(res.status);
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     addLike(cardId) {
         return fetch(`${this._url}cards/likes/${cardId}`, {
             method: 'PUT',
-            headers: this._headers}
-        ).then(res => { return res.json(); });
+            headers: this._headers
+        }
+        ).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(res.status);
+        });
     }
 
     deleteLike(cardId) {
         return fetch(`${this._url}cards/likes/${cardId}`, {
             method: 'DELETE',
-            headers: this._headers}
-        ).then(res => { return res.json(); });
+            headers: this._headers
+        }
+        ).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(res.status);
+        });
     }
 
     // https://mesto.nomoreparties.co/v1/cohortId/users/me/avatar
@@ -77,17 +112,17 @@ export default class Api {
             headers: this._headers,
             body: JSON.stringify({
                 avatar: input.link
-            })}
+            })
+        }
         ).then(res => {
             if (res.ok) {
                 return res.json();
-              }
-              return Promise.reject(res.status);
+            }
+            return Promise.reject(res.status);
         })
-        .catch(err => {
-            console.log(err);
-        });
+            .catch(err => {
+                console.log(err);
+            });
     }
 }
 
- 

@@ -1,12 +1,12 @@
 import Popup from './Popup.js';
 
 export default class PopupWithFormSubmit extends Popup {
-    constructor({popupSelector, checkForm}) {
+    constructor({ popupSelector, checkForm }) {
         super(popupSelector);
         this._popup = document.querySelector(popupSelector);
         this._checkForm = (evt) => {
             evt.preventDefault();
-            checkForm(this._id,this._element);
+            checkForm(this._id, this._element);
         }
     }
 
