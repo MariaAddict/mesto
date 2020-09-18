@@ -69,4 +69,5 @@ export default class Api {
         ).then(res => { return res.json(); });
     }
 
+    changeAvatar() {}
 }
