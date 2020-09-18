@@ -18,7 +18,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithFormSubmit from '../components/PopupWithFormSubmit.js';
 import UserInfo from '../components/UserInfo.js';
-
+let idUser;
 //создание api
 const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/', {
     headers: {
@@ -27,31 +27,60 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/', {
     }
 });
 
-//  api.editUserInfo().then(res => {console.log(res)});
+//создание класса информации профиля
+api.getUserInfo().then(dataUser => {
+    idUser = dataUser._id;
+    nameProfile.textContent = dataUser.name;
+    activityProfile.textContent = dataUser.about;
+    imageProfile.src = dataUser.avatar;
+});
 
 
+const user = new UserInfo({ name: nameProfile, activity: activityProfile });
+function seakCard(id) {
+api.getAppInfo().then(([cards, userData]) => {
+    cards.forEach(card => {
+        console.log(card._id);
+        if (id === card._id) {
+            card.remove();
+        }
+    });
+});}
 //попап картинки
 const popupImage = new PopupWithImage('.modal_type_figure');
-const popupCheck = new PopupWithFormSubmit({popupSelector: '.modal_type_check', 
-    checkForm: (id) => {
+//попап подтверждения
+const popupCheck = new PopupWithFormSubmit({
+    popupSelector: '.modal_type_check',
+    checkForm: (id, card) => {
         api.deleteCard(id);
+        card.remove();
+        popupCheck.close();
     }
 });
-    //
+//
+//проверка на авторство карточек
+function buttonDeletebyUser(data) {
+    console.log();
+    if (idUser === data.owner._id) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function createCard(data) {
     const card = new Card(data, cardTemplateSelector, {
         handleCardClick: (cardItem) => {
             popupImage.open(cardItem);
         }
     }, {
-        handleDeleteClick: (id) => {
-            popupCheck.open(id);
+        handleDeleteClick: (id, card) => {
+            popupCheck.open(id, card);
         }
     });
-    const cardElement = card.generateCard(data);
+    const cardElement = card.generateCard(buttonDeletebyUser(data));
     return cardElement;
 }
-
 
 // добавление карточек
 const cardItemList = new Section({
@@ -81,27 +110,19 @@ const formAddCardForValidation = new FormValidator(validationConfig, formAddCard
 formAddCardForValidation.enableValidation();
 //
 
-
 // добавление формы "Новое место"
 const addForm = new PopupWithForm({
     popupSelector: '.modal_type_add',
     saveFormData: (data) => {
-        console.log(data);
-        const cardElement = createCard(data);
-        cardItemList.addItem(cardElement);
-        api.addCard(data);
+        api.addCard(data).then(card =>
+            {
+                return createCard(card);
+            }).then(cardElement => {
+                return cardItemList.addItem(cardElement);
+        });
         addForm.close();
     }
 });
-
-//создание класса информации профиля
-api.getUserInfo().then(dataUser => {
-    nameProfile.textContent = dataUser.name;
-    activityProfile.textContent = dataUser.about;
-    imageProfile.src = dataUser.avatar;
-});
-
-const user = new UserInfo({ name: nameProfile, activity: activityProfile });
 
 // добавление формы "Редактировать профиль"
 const editForm = new PopupWithForm({

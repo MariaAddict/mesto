@@ -4,14 +4,16 @@ export default class PopupWithFormSubmit extends Popup {
     constructor({popupSelector, checkForm}) {
         super(popupSelector);
         this._popup = document.querySelector(popupSelector);
-        this._checkForm = () => {
-            checkForm(this._id);
+        this._checkForm = (evt) => {
+            evt.preventDefault();
+            checkForm(this._id,this._element);
         }
     }
 
-    open(id) {
+    open(id, element) {
         super.open();
         this._id = id;
+        this._element = element;
     }
 
     setEventListeners() {

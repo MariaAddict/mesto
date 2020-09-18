@@ -7,10 +7,7 @@ export default class Card {
         this._handleCardClick = () => {
             handleCardClick({ name: this._cardTitle.textContent, link: this._cardImage.src });
         }
-        this._handleDeleteClick = () => { handleDeleteClick (data._id)};
-        // this._removeCard = () => {
-        //     this._card.remove();
-        // }
+        this._handleDeleteClick = () => { handleDeleteClick (data._id, this._card)};
     }
 
     _getTemplate() {
@@ -28,11 +25,15 @@ export default class Card {
         this._cardImage.addEventListener('click', this._handleCardClick);
     }
 
-    generateCard() {
+    generateCard(button) {
         this._card = this._getTemplate();
         this._cardImage = this._card.querySelector('.cards__image');
         this._cardTitle = this._card.querySelector('.cards__title');
         this._setEventListeners();
+
+        if (button === false) {
+            this._card.querySelector('.cards__delete').style.visibility = 'hidden';
+        }
 
         this._cardImage.src = this._image;
         this._cardImage.alt = this._title;

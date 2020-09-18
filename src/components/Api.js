@@ -20,16 +20,17 @@ export default class Api {
                 name: card.name,
                 link: card.link
             })
-        }).then(res => { return res.json(); })
+        }).then(res => { 
+            return res.json(); })
     }
 
     deleteCard(id) {
-        // return fetch(`${this._url}cards/${id}`, {
-        //     method: 'DELETE',
-        //     headers: this._headers,
-        //     body: JSON.stringify(card)
-        // }).then(res => { return res.json(); })
-        console.log(id);
+        return fetch(`${this._url}cards/${id}`, {
+            method: 'DELETE',
+            headers: this._headers,
+        }).then(res => { 
+        return res.json();})
+        
     }
 
     getUserInfo() {
@@ -49,10 +50,8 @@ export default class Api {
             })
         }).then(res => { return res.json(); })
     }
-}
 
-// fetch('https://mesto.nomoreparties.co/v1/cohort-15/users/me', {
-//   headers: {
-//     authorization: 'e7e08b6b-adf3-43f0-9ed1-13df27223916'
-//   }
-// }).then(res => {return res.json();}).then(res => {console.log(res);});
+    getAppInfo() {
+        return Promise.all([this.getInitialCard(), this.getUserInfo()]);
+    }
+}
