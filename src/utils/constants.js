@@ -4,6 +4,7 @@ const modalAddCard = document.querySelector('.modal_type_add');
 
 const formEditProfile = modalEditProfile.querySelector('.modal__form');
 const formAddCard = modalAddCard.querySelector('.modal__form');
+const formAvatar = document.querySelector('.modal_type_avatar').querySelector('.modal__form');
 
 //кнопки открытия
 const openModalEditButton = document.querySelector('.profile__info-button');
@@ -19,6 +20,6 @@ const cardTemplateSelector = '.card-template';
 const cardContainerSelector = '.cards';
 
 export {
-    modalEditProfile, modalAddCard, formEditProfile, formAddCard, openModalEditButton, openModalAddButton, nameProfile,
+    modalEditProfile, modalAddCard, formEditProfile, formAddCard, formAvatar, openModalEditButton, openModalAddButton, nameProfile,
     activityProfile, imageProfile, cardTemplateSelector, cardContainerSelector
 }

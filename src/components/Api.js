@@ -69,5 +69,25 @@ export default class Api {
         ).then(res => { return res.json(); });
     }
 
-    changeAvatar() {}
+    // https://mesto.nomoreparties.co/v1/cohortId/users/me/avatar
+    // 'https://mesto.nomoreparties.co/v1/cohort-15/'
+    changeAvatar(input) {
+        return fetch(`${this._url}users/me/avatar`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: input.link
+            })}
+        ).then(res => {
+            if (res.ok) {
+                return res.json();
+              }
+              return Promise.reject(res.status);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
 }
+
+ 

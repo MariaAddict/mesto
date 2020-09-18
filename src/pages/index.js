@@ -2,6 +2,7 @@ import './index.css';
 import {
     formEditProfile,
     formAddCard,
+    formAvatar,
     openModalEditButton,
     openModalAddButton,
     nameProfile,
@@ -32,6 +33,7 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/', {
 //создание класса информации профиля
 api.getUserInfo().then(dataUser => {
     idUser = dataUser._id;
+    console.log('dataUser', dataUser);
     nameProfile.textContent = dataUser.name;
     activityProfile.textContent = dataUser.about;
     imageProfile.src = dataUser.avatar;
@@ -71,6 +73,7 @@ function createCard(data) {
     const card = new Card(data, cardTemplateSelector, {
         handleCardClick: (cardItem) => {
             popupImage.open(cardItem);
+            console.log('open card: ', cardItem);
         }
     }, {
         handleDeleteClick: (id, card) => {
@@ -127,6 +130,8 @@ const formEditProfileForValidation = new FormValidator(validationConfig, formEdi
 formEditProfileForValidation.enableValidation();
 const formAddCardForValidation = new FormValidator(validationConfig, formAddCard);
 formAddCardForValidation.enableValidation();
+const formAvatarForValidation = new FormValidator(validationConfig, formAvatar);
+formAvatarForValidation.enableValidation();
 //
 
 // добавление формы "Новое место"
@@ -159,6 +164,20 @@ editForm.setEventListeners();
 popupImage.setEventListeners();
 popupCheck.setEventListeners();
 
+const popupAvatar = new PopupWithForm({
+    popupSelector: '.modal_type_avatar',
+    saveFormData: (input) => {
+        document.querySelector('.profile__image').src = input.link;
+        api.changeAvatar(input).finally( () => {
+            document.querySelector('.modal_type_avatar').querySelector('.modal__name-button').innerHTML = 'Сохранение...';
+        });
+        popupAvatar.close();
+    }
+});
+
+popupAvatar.setEventListeners();
+
+
 //кнопки открытия модалок
 openModalEditButton.addEventListener('click', () => {
     editForm.open();
@@ -172,4 +191,10 @@ openModalEditButton.addEventListener('click', () => {
 openModalAddButton.addEventListener('click', () => {
     addForm.open();
     formAddCardForValidation.clearInputErrorCheckButton();
+});
+
+document.querySelector('.profile__overlay').addEventListener('click', () => {
+    popupAvatar.open();
+    document.querySelector('.modal_type_avatar').querySelector('.modal__name-button').innerHTML = 'Сохранить';
+    formAvatarForValidation.clearInputErrorCheckButton();
 });
