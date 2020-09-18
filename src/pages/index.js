@@ -18,6 +18,8 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithFormSubmit from '../components/PopupWithFormSubmit.js';
 import UserInfo from '../components/UserInfo.js';
+
+
 let idUser;
 //создание api
 const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/', {
@@ -37,15 +39,7 @@ api.getUserInfo().then(dataUser => {
 
 
 const user = new UserInfo({ name: nameProfile, activity: activityProfile });
-function seakCard(id) {
-api.getAppInfo().then(([cards, userData]) => {
-    cards.forEach(card => {
-        console.log(card._id);
-        if (id === card._id) {
-            card.remove();
-        }
-    });
-});}
+
 //попап картинки
 const popupImage = new PopupWithImage('.modal_type_figure');
 //попап подтверждения
@@ -60,12 +54,17 @@ const popupCheck = new PopupWithFormSubmit({
 //
 //проверка на авторство карточек
 function buttonDeletebyUser(data) {
-    console.log();
     if (idUser === data.owner._id) {
         return true;
     } else {
         return false;
     }
+}
+
+function buttonLikebyUser(likes) {
+    return likes.some( like => {
+        return idUser === like._id;
+    });
 }
 
 function createCard(data) {
@@ -77,8 +76,28 @@ function createCard(data) {
         handleDeleteClick: (id, card) => {
             popupCheck.open(id, card);
         }
-    });
-    const cardElement = card.generateCard(buttonDeletebyUser(data));
+    }, {
+        handleLikeClick: (id, card) => {
+            const likebutton = card.querySelector('.cards__like');
+            if (likebutton.classList.contains('card__like_pressed')) {
+                 api.addLike(id).then(card => {
+                    return card.likes.length;
+                }).then(length => {
+                    card.querySelector('.cards__number-of-likes').textContent = length;
+                });
+            } else {
+                api.deleteLike(id).then( card =>
+                    {
+                        return card.likes.length;
+                    }).then(length => {
+                        card.querySelector('.cards__number-of-likes').textContent = length;
+                    });;
+            }
+        }
+    }
+    );
+    const havelike = buttonLikebyUser(data.likes);
+    const cardElement = card.generateCard(buttonDeletebyUser(data), havelike);
     return cardElement;
 }
 

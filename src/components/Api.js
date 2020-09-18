@@ -54,4 +54,19 @@ export default class Api {
     getAppInfo() {
         return Promise.all([this.getInitialCard(), this.getUserInfo()]);
     }
+
+    addLike(cardId) {
+        return fetch(`${this._url}cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: this._headers}
+        ).then(res => { return res.json(); });
+    }
+
+    deleteLike(cardId) {
+        return fetch(`${this._url}cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers}
+        ).then(res => { return res.json(); });
+    }
+
 }
