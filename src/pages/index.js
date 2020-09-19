@@ -142,6 +142,7 @@ api.getAppInfo().then(([cards, userInfoData]) => {
                 console.log(err);
             }).finally(() => {
                 modalAddCard.querySelector('.modal__name-button').innerHTML = 'Создание...';
+                modalAddCard.querySelector('.modal__save-button').disabled = true;
             });
         }
     });
@@ -157,6 +158,7 @@ api.getAppInfo().then(([cards, userInfoData]) => {
                 console.log(err);
             }).finally(() => {
                 modalEditProfile.querySelector('.modal__name-button').innerHTML = 'Сохранение...';
+                modalEditProfile.querySelector('.modal__save-button').disabled = true;
             });
         }
     });
@@ -172,6 +174,7 @@ api.getAppInfo().then(([cards, userInfoData]) => {
                 console.log(err);
             }).finally(() => {
                 document.querySelector('.modal_type_avatar').querySelector('.modal__name-button').innerHTML = 'Сохранение...';
+                document.querySelector('.modal_type_avatar').querySelector('.modal__save-button').disabled = true;
             });
         }
     });
