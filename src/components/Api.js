@@ -4,7 +4,7 @@ export default class Api {
         this._headers = headers;
     }
 
-    getInitialCard() {
+    getInitialCards() {
         return fetch(`${this._url}cards`, {
             method: 'GET',
             headers: this._headers
@@ -42,10 +42,7 @@ export default class Api {
                 return res.json();
             }
             return Promise.reject(res.status);
-        }).catch(err => {
-            console.log(err);
         });
-
     }
 
     getUserInfo() {
@@ -73,8 +70,6 @@ export default class Api {
                 return res.json();
             }
             return Promise.reject(res.status);
-        }).catch(err => {
-            console.log(err);
         });
     }
 
@@ -104,8 +99,6 @@ export default class Api {
         });
     }
 
-    // https://mesto.nomoreparties.co/v1/cohortId/users/me/avatar
-    // 'https://mesto.nomoreparties.co/v1/cohort-15/'
     changeAvatar(input) {
         return fetch(`${this._url}users/me/avatar`, {
             method: 'PATCH',
@@ -119,10 +112,7 @@ export default class Api {
                 return res.json();
             }
             return Promise.reject(res.status);
-        })
-            .catch(err => {
-                console.log(err);
-            });
+        });
     }
 }
 

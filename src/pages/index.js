@@ -51,7 +51,10 @@ const popupImage = new PopupWithImage('.modal_type_figure');
 const popupCheck = new PopupWithFormSubmit({
     popupSelector: '.modal_type_check',
     checkForm: (id, card) => {
-        api.deleteCard(id);
+        api.deleteCard(id).catch(err => {
+            console.log(err);
+        });
+;
         card.remove();
         popupCheck.close();
     }
@@ -118,7 +121,7 @@ const cardItemList = new Section({
     }
 }, cardContainerSelector);
 
-api.getInitialCard().then(cards => {
+api.getInitialCards().then(cards => {
     cardItemList.renderItems(cards);
 }).catch(err => {
     console.log(err);
@@ -164,7 +167,9 @@ const editForm = new PopupWithForm({
     popupSelector: '.modal_type_edit',
     saveFormData: (item) => {
         user.setUserInfo(item);
-        api.editUserInfo(item).finally(() => {
+        api.editUserInfo(item).catch(err => {
+            console.log(err);
+        }).finally(() => {
             modalEditProfile.querySelector('.modal__name-button').innerHTML = 'Сохранение...';
         });;
         editForm.close();
@@ -176,7 +181,9 @@ const popupAvatar = new PopupWithForm({
     popupSelector: '.modal_type_avatar',
     saveFormData: (input) => {
         document.querySelector('.profile__image').src = input.link;
-        api.changeAvatar(input).finally(() => {
+        api.changeAvatar(input).catch(err => {
+            console.log(err);
+        }).finally(() => {
             document.querySelector('.modal_type_avatar').querySelector('.modal__name-button').innerHTML = 'Сохранение...';
         });
         popupAvatar.close();
