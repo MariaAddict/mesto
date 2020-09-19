@@ -2,7 +2,7 @@ export default class Card {
     constructor(data, cardSelector, { handleCardClick }, { handleDeleteClick }, { handleLikeClick }) {
         this._title = data.name;
         this._image = data.link;
-        this._idCard = data.id;
+        this._idCard = data._id;
         this._idOwner = data.owner._id;
         this._likes = data.likes;
         this._cardSelector = cardSelector;
@@ -12,7 +12,7 @@ export default class Card {
         this._handleDeleteClick = () => { handleDeleteClick(data._id, this._card ); };
         this._handleLikeClick = (evt) => {
             evt.target.classList.toggle('card__like_pressed');
-            handleLikeClick(data._id, this._card, this._likes.length)
+            handleLikeClick(this._card)
         };
     }
 

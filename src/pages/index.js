@@ -23,7 +23,7 @@ import PopupWithFormSubmit from '../components/PopupWithFormSubmit.js';
 import UserInfo from '../components/UserInfo.js';
 
 
-
+//создание api
 const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/', {
     headers: {
         'Content-Type': 'application/json',
@@ -33,11 +33,8 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/', {
 
 api.getAppInfo().then(([cards, userInfoData]) => {
 
-    //создание api
-    let idUser;
     //создание класса информации профиля
     api.getUserInfo().then(dataUser => {
-        idUser = dataUser._id;
         nameProfile.textContent = dataUser.name;
         activityProfile.textContent = dataUser.about;
         imageProfile.src = dataUser.avatar;
@@ -56,11 +53,9 @@ api.getAppInfo().then(([cards, userInfoData]) => {
             api.deleteCard(id).then(() => {
                 popupCheck.close();
                 card.remove();
-            })
-                .catch(err => {
-                    console.log(err);
-                });
-
+            }).catch(err => {
+                console.log(err);
+            });
         }
     });
     //
@@ -74,13 +69,12 @@ api.getAppInfo().then(([cards, userInfoData]) => {
         }, {
             handleDeleteClick: (id, card) => {
                 popupCheck.open(id, card);
-                console.log('card ', card);
             }
         }, {
-            handleLikeClick: (id, card) => {
+            handleLikeClick: (card) => {
                 const likebutton = card.querySelector('.cards__like');
                 if (likebutton.classList.contains('card__like_pressed')) {
-                    api.addLike(id).then(card => {
+                    api.addLike(data._id).then(card => {
                         return card.likes.length;
                     }).then(length => {
                         card.querySelector('.cards__number-of-likes').textContent = length;
@@ -88,7 +82,7 @@ api.getAppInfo().then(([cards, userInfoData]) => {
                         console.log(err);
                     });;
                 } else {
-                    api.deleteLike(id).then(card => {
+                    api.deleteLike(data._id).then(card => {
                         return card.likes.length;
                     }).then(length => {
                         card.querySelector('.cards__number-of-likes').textContent = length;
@@ -142,15 +136,13 @@ api.getAppInfo().then(([cards, userInfoData]) => {
             api.addCard(data).then(card => {
                 return createCard(card);
             }).then(cardElement => {
-                return cardItemList.addItem(cardElement);
-            }).then(() => {
                 addForm.close();
-            })
-                .catch(err => {
-                    console.log(err);
-                }).finally(() => {
-                    modalAddCard.querySelector('.modal__name-button').innerHTML = 'Создание...';
-                });
+                return cardItemList.addItem(cardElement);
+            }).catch(err => {
+                console.log(err);
+            }).finally(() => {
+                modalAddCard.querySelector('.modal__name-button').innerHTML = 'Создание...';
+            });
         }
     });
 
@@ -160,14 +152,12 @@ api.getAppInfo().then(([cards, userInfoData]) => {
         saveFormData: (item) => {
             api.editUserInfo(item).then(data => {
                 user.setUserInfo(data);
-            }).then(() => {
                 editForm.close();
-            })
-                .catch(err => {
-                    console.log(err);
-                }).finally(() => {
-                    modalEditProfile.querySelector('.modal__name-button').innerHTML = 'Сохранение...';
-                });
+            }).catch(err => {
+                console.log(err);
+            }).finally(() => {
+                modalEditProfile.querySelector('.modal__name-button').innerHTML = 'Сохранение...';
+            });
         }
     });
 
@@ -175,17 +165,14 @@ api.getAppInfo().then(([cards, userInfoData]) => {
     const popupAvatar = new PopupWithForm({
         popupSelector: '.modal_type_avatar',
         saveFormData: (input) => {
-            api.changeAvatar(input).then((input) => {
+            api.changeAvatar(input).then(() => {
                 document.querySelector('.profile__image').src = input.link;
-                //проверить
                 popupAvatar.close();
-            })
-                .catch(err => {
-                    console.log(err);
-                })
-                .finally(() => {
-                    document.querySelector('.modal_type_avatar').querySelector('.modal__name-button').innerHTML = 'Сохранение...';
-                });
+            }).catch(err => {
+                console.log(err);
+            }).finally(() => {
+                document.querySelector('.modal_type_avatar').querySelector('.modal__name-button').innerHTML = 'Сохранение...';
+            });
         }
     });
 
