@@ -54,7 +54,7 @@ const popupCheck = new PopupWithFormSubmit({
         api.deleteCard(id).catch(err => {
             console.log(err);
         });
-;
+        ;
         card.remove();
         popupCheck.close();
     }
@@ -153,12 +153,14 @@ const addForm = new PopupWithForm({
             return createCard(card);
         }).then(cardElement => {
             return cardItemList.addItem(cardElement);
-        }).catch(err => {
+        }).then( () => {
+            addForm.close();
+        })
+        .catch(err => {
             console.log(err);
         }).finally(() => {
             modalAddCard.querySelector('.modal__name-button').innerHTML = 'Создание...';
         });
-        addForm.close();
     }
 });
 
@@ -166,13 +168,16 @@ const addForm = new PopupWithForm({
 const editForm = new PopupWithForm({
     popupSelector: '.modal_type_edit',
     saveFormData: (item) => {
-        user.setUserInfo(item);
-        api.editUserInfo(item).catch(err => {
-            console.log(err);
-        }).finally(() => {
-            modalEditProfile.querySelector('.modal__name-button').innerHTML = 'Сохранение...';
-        });;
-        editForm.close();
+        api.editUserInfo(item).then(data => {
+            user.setUserInfo(data);
+        }).then(() => {
+            editForm.close();
+        })
+            .catch(err => {
+                console.log(err);
+            }).finally(() => {
+                modalEditProfile.querySelector('.modal__name-button').innerHTML = 'Сохранение...';
+            });
     }
 });
 
