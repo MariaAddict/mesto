@@ -43,8 +43,9 @@ export default class Card {
         this._setEventListeners();
 
         if ( !(this._idOwner === idUser)) {
-            this._card.querySelector('.cards__delete').style.visibility = 'hidden';
-        }
+            // this._card.querySelector('.cards__delete').style.visibility = 'hidden';
+            this._card.querySelector('.cards__delete').classList.add('cards__delete_hidden');
+        } 
 
         if (this._haveLike(idUser) === true) {
             this._likeButton.classList.add('card__like_pressed');
