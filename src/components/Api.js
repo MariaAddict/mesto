@@ -36,7 +36,7 @@ export default class Api {
     deleteCard(id) {
         return fetch(`${this._url}cards/${id}`, {
             method: 'DELETE',
-            headers: this._headers,
+            headers: this._headers
         }).then(res => {
             if (res.ok) {
                 return res.json();
@@ -113,6 +113,10 @@ export default class Api {
             }
             return Promise.reject(res.status);
         });
+    }
+
+    getAppInfo() {
+        return Promise.all([this.getInitialCards(), this.getUserInfo()]);
     }
 }
 
