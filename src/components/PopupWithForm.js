@@ -34,4 +34,7 @@ export default class PopupWithForm extends Popup {
         super.close();
     }
 
+    downloadButton(text) {
+        this._popup.querySelector('.modal__name-button').innerHTML = text;
+    }
 }

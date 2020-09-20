@@ -133,6 +133,7 @@ api.getAppInfo().then(([cards, userInfoData]) => {
     const addForm = new PopupWithForm({
         popupSelector: '.modal_type_add',
         saveFormData: (data) => {
+            addForm.downloadButton('Создание...');
             api.addCard(data).then(card => {
                 return createCard(card);
             }).then(cardElement => {
@@ -141,8 +142,7 @@ api.getAppInfo().then(([cards, userInfoData]) => {
             }).catch(err => {
                 console.log(err);
             }).finally(() => {
-                modalAddCard.querySelector('.modal__name-button').innerHTML = 'Создание...';
-                modalAddCard.querySelector('.modal__save-button').disabled = true;
+                addForm.downloadButton('Создать');
             });
         }
     });
@@ -151,14 +151,14 @@ api.getAppInfo().then(([cards, userInfoData]) => {
     const editForm = new PopupWithForm({
         popupSelector: '.modal_type_edit',
         saveFormData: (item) => {
+            editForm.downloadButton('Сохранение...');
             api.editUserInfo(item).then(data => {
                 user.setUserInfo(data);
                 editForm.close();
             }).catch(err => {
                 console.log(err);
             }).finally(() => {
-                modalEditProfile.querySelector('.modal__name-button').innerHTML = 'Сохранение...';
-                modalEditProfile.querySelector('.modal__save-button').disabled = true;
+                editForm.downloadButton('Сохранить');
             });
         }
     });
@@ -167,14 +167,14 @@ api.getAppInfo().then(([cards, userInfoData]) => {
     const popupAvatar = new PopupWithForm({
         popupSelector: '.modal_type_avatar',
         saveFormData: (input) => {
+            popupAvatar.downloadButton('Сохранение...');
             api.changeAvatar(input).then(() => {
                 document.querySelector('.profile__image').src = input.link;
                 popupAvatar.close();
             }).catch(err => {
                 console.log(err);
             }).finally(() => {
-                document.querySelector('.modal_type_avatar').querySelector('.modal__name-button').innerHTML = 'Сохранение...';
-                document.querySelector('.modal_type_avatar').querySelector('.modal__save-button').disabled = true;
+                popupAvatar.downloadButton('Сохранить');
             });
         }
     });
@@ -190,7 +190,6 @@ api.getAppInfo().then(([cards, userInfoData]) => {
     //кнопки открытия модалок
     openModalEditButton.addEventListener('click', () => {
         editForm.open();
-        modalEditProfile.querySelector('.modal__name-button').innerHTML = 'Сохранить';
         const dataUser = user.getUserInfo();
         formEditProfile.querySelectorAll('.modal__item').forEach(input => {
             input.value = dataUser[input.name];
@@ -200,7 +199,6 @@ api.getAppInfo().then(([cards, userInfoData]) => {
 
     openModalAddButton.addEventListener('click', () => {
         addForm.open();
-        modalAddCard.querySelector('.modal__name-button').innerHTML = 'Создать';
         formAddCardForValidation.clearInputErrorCheckButton();
     });
 
